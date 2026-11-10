@@ -1,0 +1,11 @@
+# HASTA VERISI ASLA DEPOYA GIRMEZ (tez kural kitabi §0.2)
+*.nrrd
+*.dcm
+*.rar
+*.zip
+paket/
+sahne/
+gelen/
+*.seg.nrrd
+*_CT.nrrd
+*.png

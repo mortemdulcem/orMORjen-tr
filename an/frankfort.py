@@ -49,9 +49,21 @@ RIM_ORDER = ('d', 'mf', 'mso', 'fmo', 'ek', 'o')
 CIFTLER = RIM_ORDER                      # MSP icin kullanilan alti cift
 
 # --- on kayitli esikler (hicbiri tahmin degil; kaynaklar belge dizesinde) ---
-ESIK_ORTA_MSP = 3.0        # mm   olcut 2
-BIPORION_ALT = 97.3        # mm   olcut 3  (`0Z`)
-BIPORION_UST = 114.4       # mm   olcut 3  (`0Z`)
+ESIK_ORTA_MSP = 3.0        # mm   olcut 2  (`0F` SS24)
+# `0AV` SS4: dis kaynak +3SS sinirini 3,21-3,59 mm'de veriyor ve bu aralik
+# denek92 (3,320) ile denek95 (3,537) uzerine dusuyor. `00` SS0.12 geregi
+# aralikten secim YAPILMADI; esik 3,00'de BIRAKILDI. Yapisal bulgu `0AV` SS4.1.
+# olcut 3 bandi: `0AV` (2026-11-10) -- `0Z`'nin 97,3-114,4 bandi IPTAL.
+#   merkez       105.85 mm  : `0Z` SS2 ogrenme seti n=8 + ASO altin standardi
+#   yari-genislik 3 x 5.313 : Howells AUB populasyon ici havuzlanmis SS
+#                             (howell.csv, n=2524, 30 populasyon, sd=2494)
+#   UYARI: AUB'nin isaret noktasi ra'dir, po DEGIL. Howells'tan alinan
+#   olcumun kendisi degil, DEGISKENLIGIDIR. Vekil degisken varsayimi
+#   `0AV` SS3.3'te yazili ve teze sinirlilik olarak girecek.
+BIPORION_MERKEZ = 105.85   # mm
+BIPORION_DIS_SS = 5.313    # mm   Howells AUB, populasyon ici havuzlanmis
+BIPORION_ALT = BIPORION_MERKEZ - 3.0 * BIPORION_DIS_SS   # 89.911 mm
+BIPORION_UST = BIPORION_MERKEZ + 3.0 * BIPORION_DIS_SS   # 121.789 mm
 ESIK_SOL_ORB = 1.0         # mm   olcut 5
 ESIK_KARSI_ORB = 3.0       # mm   olcut 6
 

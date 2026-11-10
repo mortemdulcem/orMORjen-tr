@@ -36,7 +36,7 @@
   "olcut2_orta_MSP_mm": 1.1700005500246542,
   "olcut2_gecer": true,
   "olcut3_biporion_mm": 114.43706785827746,
-  "olcut3_gecer": false,
+  "olcut3_gecer": true,
   "olcut4_maks_HU": {
    "RPo": 869.0,
    "LPo": 743.0
@@ -49,11 +49,13 @@
   "teshis_B_sol_orbitale_mm": 0.7465157591473962,
   "teshis_B_karsi_orbitale_mm": 0.7610369988438455,
   "msp_cift_sayisi": 6,
-  "hukum_A": false,
-  "gecen_olcut_sayisi": 5,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
   "olculen_olcut_sayisi": 6,
   "denek": "denek100",
-  "durum": "olculdu"
+  "durum": "olculdu",
+  "det_R": 1.0000000000000002,
+  "rijitlik_mm": 2.842170943040401e-14
  },
  {
   "olcut1_karsit_taraf": true,
@@ -180,7 +182,7 @@
   "olcut2_orta_MSP_mm": 3.3197088568137727,
   "olcut2_gecer": false,
   "olcut3_biporion_mm": 118.80014730630596,
-  "olcut3_gecer": false,
+  "olcut3_gecer": true,
   "olcut4_maks_HU": {
    "RPo": 1183.0,
    "LPo": 1468.0
@@ -194,7 +196,7 @@
   "teshis_B_karsi_orbitale_mm": 0.2255309514659567,
   "msp_cift_sayisi": 6,
   "hukum_A": false,
-  "gecen_olcut_sayisi": 4,
+  "gecen_olcut_sayisi": 5,
   "olculen_olcut_sayisi": 6,
   "denek": "denek92",
   "durum": "olculdu"
@@ -238,7 +240,7 @@
   "olcut2_orta_MSP_mm": 2.243184896620999,
   "olcut2_gecer": true,
   "olcut3_biporion_mm": 115.10962166561052,
-  "olcut3_gecer": false,
+  "olcut3_gecer": true,
   "olcut4_maks_HU": {
    "RPo": 1394.0,
    "LPo": 1051.0
@@ -251,11 +253,13 @@
   "teshis_B_sol_orbitale_mm": 0.9186394499777384,
   "teshis_B_karsi_orbitale_mm": 0.9087374987445797,
   "msp_cift_sayisi": 6,
-  "hukum_A": false,
-  "gecen_olcut_sayisi": 5,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
   "olculen_olcut_sayisi": 6,
   "denek": "denek94",
-  "durum": "olculdu"
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 2.842170943040401e-14
  },
  {
   "olcut1_karsit_taraf": true,

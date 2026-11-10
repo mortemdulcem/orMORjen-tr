@@ -111,8 +111,16 @@ def _ek_alan(E, c, u, v, mf_noktasi):
     return Ed[en[1]]
 
 
-def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False):
-    """14 landmarki dondur. atlas_sekil: (14,3) ortalama sekil; rim_atlas: nokta->(aci, r)."""
+def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False,
+           apeks_atlas=None, tur=3):
+    """14 landmarki dondur. atlas_sekil: (14,3) ortalama sekil; rim_atlas: nokta->(aci, r).
+
+    YENIDEN KURULAN ADIMLAR (2026-11-10, `0AT`):
+      - YINELEME (`07` §1 adim 4): egri -> duzlem/merkez -> egri, en cok `tur` tur.
+        Gerekce `07` §4: "Egriden kurulan duzlem, kestirimden kurulandan iyidir."
+      - APEKS ATLASI (`07` §1 adim 7, `atlas` §: c - n*t + u*dik + v*(sgn*yan)).
+        apeks_atlas=None ise eski yol (isin maskesinin en arka noktasi) korunur.
+    """
     r = bul.orbita_bul(ct, rows, org)
     if r is None:
         return None, {'hata': 'orbita bulunamadi'}
@@ -130,41 +138,57 @@ def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False):
     bilgi = {'orbita': {'sag': {k: (v.tolist() if hasattr(v, 'tolist') else v)
                                 for k, v in r['sag'].items()},
                         'sol': {k: (v.tolist() if hasattr(v, 'tolist') else v)
-                                for k, v in r['sol'].items()}}, 'egri': {}}
+                                for k, v in r['sol'].items()}}, 'egri': {}, 'tur': {}}
     for s, S, mrk in (('r', 'sag', ms), ('l', 'sol', ml)):
-        lmo = {}
-        for b in ORD:
-            lmo[b + '-' + s] = ilk[b + '-' + s]
+        lmo = {b + '-' + s: ilk[b + '-' + s] for b in ORD}
         lmo['apex-' + s] = ilk['apex-' + s]
-        try:
-            E, _ = rimcurve.auto_rim(ct, rows, org, lmo, s, win=0.75, n_out=20)
-        except Exception as e:
-            bilgi['egri'][S] = 'HATA: %s' % e
-            continue
+        E = None; cnuv = None; kosulan = 0
+        for _t in range(max(1, int(tur))):
+            try:
+                E2, _ = rimcurve.auto_rim(ct, rows, org, lmo, s, win=0.75, n_out=20)
+            except Exception as e:
+                bilgi['egri'][S] = 'HATA: %s' % e
+                E2 = None
+            if E2 is None:
+                break
+            E = np.asarray(E2, float)
+            c, n, u, v = _duzlem_cerceve(E, mrk)
+            cnuv = (c, n, u, v)
+            kosulan += 1
+            for b in ORD:
+                P, rr = _aci_yerlestir(E, c, u, v, s, rim_atlas[b]['aci'], rim_atlas[b]['r'])
+                son[b + '-' + s] = P
+            try:
+                son['ek-' + s] = _ek_alan(E, c, u, v, son['mf-' + s])
+            except Exception:
+                pass
+            if apeks_atlas:
+                sgn = 1.0 if s == 'r' else -1.0
+                son['apex-' + s] = (c - n * float(apeks_atlas['t'])
+                                    + u * float(apeks_atlas['dik'])
+                                    + v * (sgn * float(apeks_atlas['yan'])))
+            # --- YINELEME: yeni noktalardan cerceveyi yeniden kur ---
+            kom = {b + '-' + s: son[b + '-' + s] for b in ORD}
+            kom['apex-' + s] = son.get('apex-' + s, lmo['apex-' + s])
+            if all(np.allclose(kom[k], lmo[k], atol=1e-9) for k in kom):
+                break
+            lmo = kom
+        bilgi['tur'][S] = kosulan
         if E is None:
-            bilgi['egri'][S] = 'uretilemedi'
+            bilgi['egri'].setdefault(S, 'uretilemedi')
             continue
-        E = np.asarray(E, float)
         bilgi['egri'][S] = E.tolist()
-        c, n, u, v = _duzlem_cerceve(E, mrk)
-        for b in ORD:
-            P, rr = _aci_yerlestir(E, c, u, v, s, rim_atlas[b]['aci'], rim_atlas[b]['r'])
-            son[b + '-' + s] = P
-        # ek'i tanimdan yeniden koy
-        try:
-            son['ek-' + s] = _ek_alan(E, c, u, v, son['mf-' + s])
-        except Exception:
-            pass
-        # apeks: isin maskesinin en arka noktasi
-        try:
-            o = rayseg.ray_volume(ct, rows, org, lmo, s, rim_curve=E, plane_shift=0.0,
-                                  return_mask=True, acma_mm=1.5)
-            M = o['maske']
-            ii = np.argwhere(M)
-            lps = (rows.T @ ii.astype(float).T).T + org
-            P = lps * np.array([-1., -1., 1.])
-            t2 = (P - c) @ n
-            son['apex-' + s] = P[int(np.argmin(t2))]
-        except Exception as e:
-            bilgi.setdefault('apeks_hata', {})[S] = str(e)
+        if not apeks_atlas:
+            c, n, u, v = cnuv
+            try:
+                o = rayseg.ray_volume(ct, rows, org, lmo, s, rim_curve=E, plane_shift=0.0,
+                                      return_mask=True, acma_mm=1.5)
+                M = o['maske']
+                ii = np.argwhere(M)
+                lps = (rows.T @ ii.astype(float).T).T + org
+                P = lps * np.array([-1., -1., 1.])
+                t2 = (P - c) @ n
+                son['apex-' + s] = P[int(np.argmin(t2))]
+            except Exception as e:
+                bilgi.setdefault('apeks_hata', {})[S] = str(e)
     return son, bilgi

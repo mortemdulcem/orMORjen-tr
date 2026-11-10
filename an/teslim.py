@@ -44,8 +44,10 @@ def egri(yol):
 E = {'sag': egri(MRK + '/OTO_rim_sag.mrk.json'), 'sol': egri(MRK + '/OTO_rim_sol.mrk.json')}
 M = {}
 for s, S in (('r', 'sag'), ('l', 'sol')):
-    M[s] = rayseg.ray_volume(ct, rows, org, lm, s, rim_curve=E[S], plane_shift=0.0,
-                             return_mask=True, acma_mm=1.5)['maske']
+    # TEK KAYNAK AYAR (`0P` C1): bu cagri 2026-11-07'de UNUTULMUSTU ve dogrulama
+    # duzeltilmemis maskeyi duzeltilmis hacimle karsilastirip denek56'yi reddetmisti.
+    # 2026-11-10 (`0AT`) tek kaynaga baglandi.
+    M[s] = rayseg.kohort_maskesi(ct, rows, org, lm, s, rim_curve=E[S])['maske']
 h = {s: M[s].sum() * vox / 1000. for s in M}
 bek = (o['hacim_sag'], o['hacim_sol'])
 dv = (abs(h['r'] - bek[0]), abs(h['l'] - bek[1]))

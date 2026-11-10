@@ -356,13 +356,14 @@ def calistir(kaynak, kimlik, disla=None, kok=KOK, cikti_mrk=True, medial="nicp")
     # --- 6) MASKE
     M = {}
     for s, S in (("r", "sag"), ("l", "sol")):
-        o = rayseg.ray_volume(ct, rows, org, lm, s, rim_curve=E[S], plane_shift=0.0,
-                              return_mask=True, acma_mm=1.5)
+        # TEK KAYNAK AYAR (`0P` C1 · 2026-11-10 `0AT`): ayar burada elle yazilmaz.
+        # Eski hali `alan_tek_yonlu` (0N) ve lob temizligini (0R) TASIMIYORDU.
+        o = rayseg.kohort_maskesi(ct, rows, org, lm, s, rim_curve=E[S])
         M[s] = o["maske"]
     _log("6/8 MASKE", "isin maskesi · %.3f / %.3f cm3"
          % (M["r"].sum() * vox / 1000., M["l"].sum() * vox / 1000.))
     rapor["adimlar"].append({"adim": "maske", "sonuc": "TAMAM",
-                             "kaynak": "rayseg (isin) + otomatik egri on siniri"})
+                             "kaynak": "rayseg.kohort_maskesi (tek kaynak ayar; 0N alan kisiti + 0R lob temizligi dahil)"})
 
     # --- 7) OLCUM
     _log("7/8 OLCUM", "43 parametre (altigen katsayilari n=12)")

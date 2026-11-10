@@ -177,3 +177,92 @@ satırları `dok_2637.py` ile üretildi.
 - Hiçbir olgu değerine bakılarak dışlanmadı (`0K` §4.4); düşen olgular yerine
   yenisi konmadı.
 - `o-l_z` sütununun özdeş sıfır olması (`0AU` §5) sürüyor.
+
+---
+
+## 8. ⭐ BAĞIMSIZ DOĞRULAMA — ASO'nun kendi toleransı (2026-11-10 21:05)
+
+**Araştırmacı sorusu:** *"3D slicer uygulamasının frankfort kodları onları niye
+çekmiyorsun sen"*
+
+Çekildi. Bulgular:
+
+### 8.1 Slicer çekirdeğinde Frankfort kodu YOK
+`github.com/Slicer/Slicer` üzerinde arandı: sıfır sonuç. Frankfort,
+**eklentide** — `DCBIA-OrthoLab/SlicerAutomatedDentalTools`, yani **ALI_CBCT ile
+aynı laboratuvar** ve `0Z`'nin altın standardının geldiği yer. Depo okundu
+(klon: `/home/claude/dcbia-ortholab/slicerautomateddentaltools`), **koşturulmadı.**
+
+### 8.2 ASO düzlemi analitik kurmuyor — altın referansa KAYDEDİYOR
+- `ASO/ASO_Method/CBCT.py:51` → referans: `Frankfurt_Horizontal_Midsagittal_Plane.zip`
+- `ASO/ASO_Method/CBCT.py:249` → `["Ba", "S", "N", "RPo", "LPo", "ROr", "LOr"]`
+- `ASO_CBCT/ASO_CBCT_utils/utils.py:527` `ICP_Transform` →
+  `vtkIterativeClosestPointTransform`, `SetModeToRigidBody()`
+
+Yani ASO, hastanın yedi landmarkını altın taramanın aynı yedi landmarkına katı
+cisim olarak oturtur. Üç noktalı düzlem kurulumu hiç yoktur.
+
+> **Bu, `0AU` §7c'nin açık sorusunu çözüyor.** Frankfort tanımı düzlem içi dönmeyi
+> sabitlemez; biz koşudan önce bir kural yazmıştık. ASO'da böyle bir kurala gerek
+> yok, çünkü yedi landmark altı serbestlik derecesinin hepsini belirler. Tezin
+> §7c sınırlılığında bu yaklaşım kaynak gösterilebilir.
+
+### 8.3 ⭐⭐ ASO'nun landmark denetim ölçütleri — ve bi-porion bandını doğrulaması
+
+`ASO_CBCT/ASO_CBCT_utils/utils.py:341` `GetLandmarkToRemove`:
+
+| ölçüt | ne yapar | eşik | satır |
+|---|---|---|---|
+| uzaklık | altın ile hastanın **bütün ikili landmark uzaklıklarının** farkı | **15 mm** | `:350` `GetCount(dist_diff, max_diff=15)` |
+| yön | aynı çiftlerin **yön vektörleri arasındaki açı** | **0,4 rad (≈22,9°)**, alt sınır 0,1 rad | `:351` |
+| hüküm | toplam sayım > landmark sayısı → landmark atılır | | `:353-362` |
+
+Bi-porion çiftine uygulandığında, altın standardın bi-porion'u **104,2 mm**
+(`0Z` §2'de kayıtlı) olduğuna göre kabul aralığı **104,2 ± 15 = 89,20–119,20 mm**.
+
+| olgu | bi-porion | \|104,2 − b\| | ASO (±15) | `0AV` §3 (Howells) |
+|---|---|---|---|---|
+| denek10 | 88,73 | 15,47 | **ret** | **ret** |
+| denek78 | 105,16 | 0,96 | geçer | geçer |
+| denek98 | 105,81 | 1,61 | geçer | geçer |
+| denek101 | 107,44 | 3,24 | geçer | geçer |
+| denek86 | 108,91 | 4,71 | geçer | geçer |
+| denek95 | 110,17 | 5,97 | geçer | geçer |
+| denek96 | 110,32 | 6,12 | geçer | geçer |
+| denek99 | 111,05 | 6,85 | geçer | geçer |
+| denek97 | 111,11 | 6,91 | geçer | geçer |
+| denek93 | 113,02 | 8,82 | geçer | geçer |
+| denek100 | 114,44 | 10,24 | geçer | geçer |
+| denek94 | 115,11 | 10,91 | geçer | geçer |
+| denek92 | 118,80 | 14,60 | geçer | geçer |
+| denek11 | 123,82 | 19,62 | **ret** | **ret** |
+
+**14 olgunun 14'ünde iki band AYNI hükmü veriyor. Fark sıfır.**
+
+### 8.4 Ne değişebilir — araştırmacı kararı
+ASO toleransı `0AV` §3.3'teki **vekil değişken uyarısını gereksiz kılar**: AUB/ra
+varsayımı yok, doğrudan bi-porion üzerine yayımlanmış bir eşik var. Hiçbir olgunun
+hükmü değişmediği için bu bir **kol seçimi değildir** (`00` §0.12 anlamında ortada
+değişen bir sonuç yok); yalnız bandın **dayanağı** güçlenir.
+
+Seçenekler: (a) ASO toleransı birincil kaynak olur, Howells türetmesi bağımsız
+doğrulama olarak kalır; (b) ikisi birlikte bildirilir; (c) hiçbir şey değişmez,
+bu bölüm yalnız doğrulama kaydı olarak durur.
+
+### 8.5 AÇIK — ölçüt 2'nin yerine geçecek kural bulundu
+`0AV` §4.1 ölçüt 2'nin yerine geçecek kuralın tam kohort ölçümünden **önce**
+sabitlenmesi gerektiğini yazmıştı. ASO'nun yön ölçütü (0,4 rad) + uzaklık ölçütü
+(15 mm) bu kuraldır: yayımlanmış, dışarıdan, ve bizim altı ad hoc ölçütümüzün
+tamamının yerine geçebilir. Gereken: ALI'nin **yedi** landmarkı da çıkarması
+(`Ba, S, N` → CB grubu; `ROr, LOr` → U grubu; `GlobalVar.py` hepsini listeliyor).
+Şu an yalnız `RPo, LPo` çıkarılıyor.
+
+### 8.6 Çatı değiştirilmesi ÖNERİLMİYOR
+`tez/10` §7 analitik üç noktalı tanımı yazıyor ve GPA zaten dönmeyi giderdiği için
+ASO çatısına geçmek **morfometrik sonuçları değiştirmez**, yalnız ham bildirilen
+koordinatları değiştirir. Çok iş, sıfır kazanç. ASO yaklaşımı §7c'de kaynak olarak
+anılır, çatı olarak benimsenmez.
+
+### 8.7 İZİN NOTU
+Bu depo yalnız **okundu**. Araştırmacının 2026-11-09'daki *"İzin veriyorum"* izni
+`ALI_CBCT` kodunu **koşturmak** içindi. ASO kodu koşturulacaksa ayrı izin gerekir.

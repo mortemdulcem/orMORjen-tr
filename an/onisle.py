@@ -62,7 +62,10 @@ def dicom_hacim(kaynak):
     okuyucu.SetFileNames(dosyalar)
     img = okuyucu.Execute()
     a = sitk.GetArrayFromImage(img)              # (z,y,x)
-    hacim = np.transpose(a, (2, 1, 0))           # -> (x,y,z) = ct[i,j,k]
+    # DIKKAT: SimpleITK sirasi (z,y,x) AYNEN dondurulur.
+    # `otomasyon2.py:246` kendisi np.transpose(hacim,(2,1,0)) yapar; burada da
+    # cevirmek CIFT TRANSPOZE olur ve ornekleme hacmin disina duser (2026-11-10 `0AT`).
+    hacim = a           # -> (x,y,z) = ct[i,j,k]
 
     d = pydicom.dcmread(dosyalar[0], stop_before_pixels=True, force=True)
     g = lambda k, v=None: getattr(d, k, v)
@@ -83,6 +86,10 @@ def dicom_hacim(kaynak):
         SeriesUID_ozet=hashlib.sha256(str(g('SeriesInstanceUID', '')).encode()).hexdigest()[:16],
         StudyUID_ozet=hashlib.sha256(str(g('StudyInstanceUID', '')).encode()).hexdigest()[:16],
         spacing=[float(x) for x in sp],
+        # otomasyon2 bu uc anahtari bekler (satir 247-249):
+        PixelSpacing=[float(sp[0]), float(sp[1])],
+        kesit_araligi=float(sp[2]),
+        anizotropi=round(float(sp[2]) / float(sp[0]), 3),
         origin=[float(x) for x in img.GetOrigin()],
         direction=[float(x) for x in img.GetDirection()],
     )

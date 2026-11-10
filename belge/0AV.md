@@ -291,7 +291,50 @@ Fails for N : 1/1
 ```
 
 Etmen 0,3 mm ölçeğinde **hacmin dışına çıkıyor**. Bu bir **altyapı kusurudur**,
-yöntem hükmü değildir (`0AU` §4 ayrımı). Kohort genelindeki sıklığı ölçülüyor.
+yöntem hükmü değildir (`0AU` §4 ayrımı).
+
+**Görüş alanı sorunu DEĞİL — ölçüldü.** denek98'in hacmi LPS'te
+x −151,0..150,4 · y −121,6..179,8 · z −194,8..−19,8 mm. Orbitale orta noktasının
+en yakın kutu kenarına uzaklığı **50 mm**; nasion oradan birkaç cm ötede, rahatça
+içeride. Nasion taramanın içindedir.
+
+**Başarısızlığın ölçülen biçimi:** etmen kaba ölçekte (1 mm) noktayı buluyor
+(`Agent pos = [81, 68, 127]`), 0,3 mm ölçeğine yükseliyor ve orada **üç kez**
+sınır dışına çıkıp `search_atempt > 2` ile vazgeçiyor. Yani kusur ince ölçektedir.
+
+### 8.5.3 ⚠ BULUNAN KOD HATASI — gerçek ama SEBEP DEĞİL (yama geri alındı)
+`Agents_class.py:123` `Move()` sınır denetimi:
+```python
+if new_pos.all() > 0 and (new_pos < ...GetSize(...)).all():
+```
+`new_pos.all()` diziyi tek bir mantıksal değere indirip 0 ile karşılaştırıyor;
+doğrusu `(new_pos > 0).all()`. Ölçülen etkisi: **negatif indisler alt sınırdan
+geçiyor** (`[100,50,−30]` → yazılan `True`, doğrusu `False`) ve numpy'de negatif
+indis dizinin öbür ucundan örnekler.
+
+**Yama denendi ve SEBEP OLMADIĞI ölçüldü.** denek98 düzeltilmiş kodla yeniden
+koşuldu:
+
+| | yamasız | yamalı |
+|---|---|---|
+| gelen landmark | 6 (Ba, S, RPo, LPo, ROr, LOr) | **aynı 6** |
+| ortak noktalarda en büyük fark | — | **0,000000 mm** |
+| N geldi mi | hayır | **hayır** |
+
+Yani hata gerçektir ama nasion kaybının sebebi değildir.
+
+> ⛔ **YAMA GERİ ALINDI, özgün kod kullanılıyor.** Gerekçe: yamanın etkisizliği
+> yalnız **bir** olguda gösterilebildi; bir sınır denetimi hatasının etkisi
+> olguya göre değişebilir. `0K` §1 dondurulmuş hat kuralı gereği, bütün kohortta
+> etkisizliği gösterilemeyen bir sapma koda sokulmaz. Hata üçüncü taraf kodun
+> bilinen kusuru olarak buraya kaydedilir.
+
+### 8.5.4 NASİON GEREKLİ DEĞİL
+ASO kaydı katı cisim ICP'dir; eş-doğrusal olmayan **üç** nokta yeter. Elimizde
+altı nokta var ve ikisi orta hatta (`Ba`, `S`), yani orta sagital düzlem hâlâ
+belirleniyor. ASO'nun kendi `GetLandmarkToRemove`'u zaten landmark atmak üzere
+yazılmıştır. **Yedi landmark planı altı landmarkla sürüyor**; N'in yokluğu
+kayıt olarak bildirilir.
 
 > ⭐ **YAN DOĞRULAMA:** yedi landmarklı koşuda denek98'in porionları, iki
 > landmarklı koşunun ürettiğiyle **bit düzeyinde aynı** (fark 0,0000 mm; bi-porion

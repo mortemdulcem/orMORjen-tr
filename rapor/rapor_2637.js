@@ -47,8 +47,8 @@ function tablo(basliklar, satirlar, genisler) {
   return new Table({
     columnWidths: W,
     rows: [
-      new TableRow({ children: basliklar.map((b, i) => hucre(b, { bold: true, w: W[i], shade: 'E8E8E8' })) }),
-      ...satirlar.map(r => new TableRow({ children: r.map((c, i) => hucre(c, { w: W[i] })) })),
+      new TableRow({ tableHeader: true, cantSplit: true, children: basliklar.map((b, i) => hucre(b, { bold: true, w: W[i], shade: 'E8E8E8' })) }),
+      ...satirlar.map(r => new TableRow({ cantSplit: true, children: r.map((c, i) => hucre(c, { w: W[i] })) })),
     ],
   });
 }
@@ -124,7 +124,28 @@ const govde = [
   p('Her olgu için hüküm değil sayı kaydedilmiştir; böylece bir eşik sonradan değişirse koşu baştan alınmadan hükümler yeniden hesaplanabilir.'),
   degerTablo,
   p(''),
-  h('3.3. Dönüşümün katılığı', HeadingLevel.HEADING_3),
+  h('3.3. Retlerin iki türü', HeadingLevel.HEADING_3),
+  p('Reddedilen olgular tek bir küme değildir. Bir bölümünde porion açıkça yanlış yerdedir; bu olgular birden çok ölçütten birden düşer ve bağımsız göstergeleri de yanlışlığı doğrular. Geri kalanında porion üç düzlem denetiminde doğru yapının üzerindedir ve bağımsız göstergeleri doğru aralıktadır; bu olgular yalnız bir eşiğin kenarından düşmektedir. Bu iki tür ayrı bildirilmelidir.'),
+  tablo(['denek', 'düşen ölçüt', 'karşı orbitale (mm)', 'en küçük maks HU', 'tür'],
+    dusen.map(k => {
+      const hu = k.olcut4_maks_HU || {}; const vals = Object.values(hu);
+      const d = [];
+      if (!k.olcut1_karsit_taraf) d.push('1');
+      if (!k.olcut2_gecer) d.push('2');
+      if (!k.olcut3_gecer) d.push('3');
+      if (k.olcut4_gecer === false) d.push('4');
+      if (!k.olcut5_gecer_A) d.push('5');
+      if (!k.olcut6_gecer_A) d.push('6');
+      const kaba = k.olcut6_karsi_orbitale_mm_A > 3.0;
+      return [k.denek, d.join(', '), F(k.olcut6_karsi_orbitale_mm_A, 3),
+              vals.length ? F(Math.min(...vals), 0) : '—',
+              kaba ? 'kaba kusur' : 'eşik kenarı'];
+    }), [1300, 1800, 2200, 1900, 1800]),
+  p(''),
+  p('Daha önce bildirilen bandlar şunlardır: doğru işaretlenmiş porionlarda karşı orbitalenin düzleme uzaklığı 0,55–2,83 mm ve nokta çevresindeki en büyük değer 1298–1757 HU; yanlış işaretlenmişlerde sırasıyla 24–30 mm ve 58–75 HU. Eşik kenarından düşen olguların tamamı bu ölçütlerin doğru aralığındadır.'),
+  p('Ayrıca bu kohortta karşı orbitale uzaklığı 3 mm’nin altında kalan olgularda bi-porion uzaklığı 105,8–118,8 mm (ortanca 111,1 mm) ölçülmüştür. Kabul bandının üst sınırı bu dağılımın içinden geçmektedir. Band, kohorttan değil, daha dar bir öğrenme kümesinden türetilmiştir ve o kümede kabul edilen değerler 102,8–110,6 mm aralığındaydı. Band bu sonuçlar görüldükten sonra gevşetilmemiştir; değiştirilecekse ayrı bir ön kayıt gerekmektedir.'),
+
+  h('3.4. Dönüşümün katılığı', HeadingLevel.HEADING_3),
   p(rijMaks === null
     ? 'Kabul edilen olgu bulunmadığından katılık ölçülememiştir.'
     : `Kabul edilen ${gecen.length} olguda dönüşüm matrisinin determinantı ${detler.map(d => d.toFixed(6).replace('.', ',')).join('; ')} bulunmuştur. Landmarklar arası bütün ikili uzaklıkların dönüşüm öncesi ve sonrası en büyük farkı ${rijMaks.toExponential(3).replace('.', ',')} mm’dir. Bu değer, daha önce bağımsız olarak kaydedilen 2,8 × 10⁻¹⁴ mm ile aynı büyüklüktedir. Dolayısıyla doğrusal uzaklıklar, oranlar, apertür alanı ve çevresi, kavite hacmi ve duvar kalınlığı bu dönüşümden etkilenmemektedir; dondurulmuş 43 parametre için yeniden ölçüm gerekmemektedir.`),

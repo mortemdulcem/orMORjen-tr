@@ -86,8 +86,32 @@
   "rijitlik_mm": 1.4210854715202004e-14
  },
  {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 35.823188256852795,
+   "LPo": -52.59608673534733
+  },
+  "olcut2_orta_MSP_mm": 8.38644923924727,
+  "olcut2_gecer": false,
+  "olcut3_biporion_mm": 123.82403845780512,
+  "olcut3_gecer": false,
+  "olcut4_maks_HU": {
+   "RPo": 72.0,
+   "LPo": 534.0
+  },
+  "olcut4_gecer": false,
+  "olcut5_sol_orbitale_mm_A": 3.6592173239058925e-16,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 50.512715528592175,
+  "olcut6_gecer_A": false,
+  "teshis_B_sol_orbitale_mm": 21.811521188685393,
+  "teshis_B_karsi_orbitale_mm": 19.236208049863148,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 2,
+  "olculen_olcut_sayisi": 6,
   "denek": "denek11",
-  "durum": "porion_kosulmadi"
+  "durum": "olculdu"
  },
  {
   "olcut1_karsit_taraf": true,

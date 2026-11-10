@@ -70,6 +70,28 @@ def _duzlem_cerceve(E, ic_nokta):
     return c, n, u, np.cross(n, u)
 
 
+def _duzlem_cerceve_anatomik(E, ic_nokta, lm):
+    """Apertur duzlemi, in-plane YUKARI ekseni ANATOMIK.
+
+    `0F` §20: "B = anatomik (MSP normali, YALNIZ `d` ve `mf` ciftlerinden —
+    ikisi de sutur noktasidir)". Dunya +z yerine bu kullanilir.
+    `0F` §21 hukmu: GENEL kapsamda BENIMSENMEZ; `0F2` §36: `mso` icin kabul
+    (4,755 -> 3,444 mm, her uc olcutte iyi). Bu yuzden YALNIZ `mso` icin cagrilir.
+    """
+    c, n, _, _ = params.plane(E)
+    if np.dot(ic_nokta - c, n) > 0:
+        n = -n
+    nm = np.mean([np.asarray(lm[b + '-r'], float) - np.asarray(lm[b + '-l'], float)
+                  for b in ('d', 'mf')], axis=0)
+    nm = nm / np.linalg.norm(nm)
+    u = np.cross(n, nm)
+    u = u - np.dot(u, n) * n
+    u = u / np.linalg.norm(u)
+    if u[2] < 0:
+        u = -u                      # dunya +z surumuyle ayni yonde (YUKARI) olsun
+    return c, n, u, np.cross(n, u)
+
+
 def _aci_yerlestir(E, c, u, v, s, aci_deg, r_oran):
     """Egri uzerinde verilen acida nokta. r_oran yalniz dogrulama icin dondurulur."""
     E2 = np.stack([(E - c) @ u, (E - c) @ v], 1)
@@ -112,7 +134,7 @@ def _ek_alan(E, c, u, v, mf_noktasi):
 
 
 def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False,
-           apeks_atlas=None, tur=3):
+           apeks_atlas=None, tur=3, mso_anat=None):
     """14 landmarki dondur. atlas_sekil: (14,3) ortalama sekil; rim_atlas: nokta->(aci, r).
 
     YENIDEN KURULAN ADIMLAR (2026-11-10, `0AT`):
@@ -162,6 +184,15 @@ def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False,
                 son['ek-' + s] = _ek_alan(E, c, u, v, son['mf-' + s])
             except Exception:
                 pass
+            # `mso` ANATOMIK cercevede (`0F2` §36; `0F` §21 genel kapsamda RET).
+            # Atlas acisi ayni cercevede turetilir: `an/out/mso_anatomik.json`.
+            if mso_anat:
+                try:
+                    ca, na, ua, va = _duzlem_cerceve_anatomik(E, mrk, son)
+                    son['mso-' + s], _ = _aci_yerlestir(E, ca, ua, va, s,
+                                                        mso_anat['aci'], mso_anat['r'])
+                except Exception:
+                    pass
             if apeks_atlas:
                 sgn = 1.0 if s == 'r' else -1.0
                 son['apex-' + s] = (c - n * float(apeks_atlas['t'])

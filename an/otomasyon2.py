@@ -280,7 +280,12 @@ def calistir(kaynak, kimlik, disla=None, kok=KOK, cikti_mrk=True, medial="nicp")
 
     # --- 4) LANDMARK (orbita bulma dahil)
     _log("4/8 LANDMARK", "orbita bulma + 14 nokta")
-    lm, bil = L.tespit(ct, rows, org, ort, ra, apeks_atlas=apa)
+    # `mso` anatomik cerceve (`0F2` §36) — atlas acisi out/mso_anatomik.json
+    try:
+        _msoa = json.load(open(os.path.join(AN, "out/mso_anatomik.json"), encoding="utf-8"))
+    except Exception:
+        _msoa = None
+    lm, bil = L.tespit(ct, rows, org, ort, ra, apeks_atlas=apa, mso_anat=_msoa)
     if lm is None:
         rapor["adimlar"].append({"adim": "landmark", "sonuc": "RED", "hata": bil})
         json.dump(rapor, open(os.path.join(kok, "raporlar", "%s_OTO.json" % kimlik), "w",

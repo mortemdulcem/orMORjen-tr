@@ -350,3 +350,97 @@ anılır, çatı olarak benimsenmez.
 ### 8.7 İZİN NOTU
 Bu depo yalnız **okundu**. Araştırmacının 2026-11-09'daki *"İzin veriyorum"* izni
 `ALI_CBCT` kodunu **koşturmak** içindi. ASO kodu koşturulacaksa ayrı izin gerekir.
+
+
+---
+
+## 9. ASO KAPISI KOŞULDU — `0AV` §8.5'İN DÜZELTMESİ (2026-11-10 22:30)
+
+Altın referans indirildi (`ASO_CBCT` `v01_goldmodels` →
+`Frankfurt_Horizontal_Midsagittal_Plane.zip`, 174 MB) ve ASO'nun kapı
+fonksiyonları kendi kaynağından **birebir** alındı (`an/aso_kapi.py`;
+`ASO_CBCT/ASO_CBCT_utils/utils.py` satır 123–163 ve 250–365, hiçbir satır
+değiştirilmedi). Kod yalnız **okundu ve çağrıldı**, ASO modülü koşturulmadı.
+
+### 9.1 Altın bi-porion kaynağından doğrulandı
+`MAMP_0002_T1.mrk.json` → RPo–LPo = **104,217 mm**. `0Z` §2'nin kaydettiği
+**104,2** ile birebir. §8.3'te kullanılan değer böylece ikinci elden değil
+**birinci elden** doğrulanmış oldu.
+
+### 9.2 Altı landmark koşusu — 14/14
+`Ba, S, RPo, LPo, ROr, LOr`: **84/84 landmark**, sıfır hata, sıfır sessiz kayıp.
+N dışarıda (§8.5.2–4).
+
+### 9.3 İki kapının karşılaştırması
+
+| denek | ASO'nun attığı | ASO | bizim altı ölçüt |
+|---|---|---|---|
+| denek10 | **LPo, RPo** | RET | RET |
+| denek11 | **Ba, RPo, S** | RET | RET |
+| denek78 | (yok) | geçer | **RET** (ölçüt 2, 6) |
+| denek92 | (yok) | geçer | **RET** (ölçüt 2) |
+| denek95 | (yok) | geçer | **RET** (ölçüt 2) |
+| kalan 9 | (yok) | geçer | geçer |
+
+**11/14 aynı.** ASO kaba kusurlarda porionu **adıyla** gösteriyor.
+
+### 9.4 ⚠ §8.5'TE YAZDIĞIM YANLIŞTI — ASO kapısı yerine geçemez
+
+§8.5 *"bizim altı ad hoc ölçütümüzün tamamının yerine geçebilir"* diyordu.
+Koşulunca iki yapısal engel ölçüldü:
+
+**(a) Tolerans tek bir kafatasına karşı mutlak uzaklık ölçüyor.** 15 mm eşiği
+hastanın ikili landmark uzaklıklarını **MAMP_0002_T1'in** uzaklıklarıyla
+karşılaştırıyor. Bizim *iyi* olgularımızın birçoğunda `LOr–ROr` farkı 16–20 mm:
+
+| denek | en büyük ikili sapma | çift | bizim hükmümüz |
+|---|---|---|---|
+| denek95 | 20,77 | Ba–LOr | ret (ölçüt 2) |
+| denek94 | 19,69 | LOr–ROr | **geçer** |
+| denek93 | 16,18 | LOr–ROr | **geçer** |
+| denek92 | 15,59 | LOr–ROr | ret (ölçüt 2) |
+
+Bu bir hata değil, **normal anatomik değişkenlik**. Kapı ICP öncesi kaba bir
+filtre; morfometrik kalite kapısı değildir.
+
+**(b) Atma eşiği landmark sayısına görelidir.** `tot_count > len(test_ldmk)`.
+ASO'nun kendi yedi noktasında her landmarkın 6 çifti vardır (tavan 12, eşik >7);
+bizim altı noktamızda 5 çift (tavan 10, eşik >6). **N düştüğü için kapı kendi
+tasarımından daha katı çalışıyor.** denek78'de izi sürüldü:
+
+| denek78 | uzaklık | yön | toplam |
+|---|---|---|---|
+| **RPo** | 3 | 3 | **6** (eşik >6 — bir puanla kaçırıyor) |
+| Ba | 2 | 2 | 4 |
+| S | 1 | 3 | 4 |
+
+ASO **sıralamayı doğru yapıyor** (RPo en tepede, en büyük ikili sapma 46,47 mm
+Ba–LPo), ikili hükmü vermiyor. denek10'da LPo ve RPo 10/10 ile tavan yapıp
+atılıyor.
+
+### 9.5 ⭐ ÖLÇÜT 6 BAĞIMSIZ OLARAK DOĞRULANDI
+ALI'nin `ROr`/`LOr` kestirimleri bizim hattımızın orbitaleleriyle karşılaştırıldı
+(14 olgu): ortanca en büyük fark **1,90 mm** (0,67–5,39). Üç kaba kusur
+olgusunda uyum kohortun **en iyileri arasında**:
+
+| denek | ROr farkı | LOr farkı | ölçüt 6 |
+|---|---|---|---|
+| denek78 | 1,30 | 1,25 | **24,83** |
+| denek10 | 1,73 | 0,80 | **67,70** |
+| denek11 | 1,18 | 0,95 | **50,51** |
+
+Yani ölçüt 6'nın bu olgulardaki devasa değerleri **orbitaleden gelmiyor,
+düzlemden geliyor** — porionlardan. Reddimiz doğrudur. Frankfort düzlemi porion
+hatasını geometrik olarak büyüttüğü için **ölçüt 6, ASO'nun ikili kapısından
+daha duyarlıdır** (denek78'i yakalar, ASO yakalayamaz).
+
+### 9.6 HÜKÜM — hiçbiri diğerini kapsamıyor
+ASO bozuk noktayı **adıyla söyler**, bizimki **daha duyarlıdır**. Tam kohort için
+doğru tasarım muhtemelen ikisinin birlikte kullanılmasıdır: ASO'nun sıralaması
+(hangi landmark bozuk) + bizim ölçüt 4 ve 6'mız (kemik kapısı ve düzlem
+büyütmesi). Ölçüt 2 ise her iki bağımsız kanıt tarafından da şüpheli bulunuyor
+(§4.1 ve §9.3).
+
+> ⛔ **ŞİMDİ HİÇBİR KAPI DEĞİŞTİRİLMEDİ.** Bu karşılaştırma `0K` §1'in tam
+> kohort yeniden ölçümü için **ön kayıt malzemesidir**; kural ölçümden önce
+> sabitlenecektir (`00` §0.12).

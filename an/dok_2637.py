@@ -64,7 +64,8 @@ def bir_olgu(denek, paket, porion_json):
         for k in F.RIM_ORDER:
             p = lm2[f'{k}-{s}']
             for i, eks in enumerate(('x', 'y', 'z')):
-                satir[f'{k}-{s}_{eks}'] = round(float(p[i]), 4)
+                v = round(float(p[i]), 4)
+                satir[f'{k}-{s}_{eks}'] = v + 0.0 if v else 0.0   # -0,0 -> 0,0
     return kayit, satir
 
 

@@ -1,0 +1,384 @@
+[
+ {
+  "olcut1_karsit_taraf": false,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": -9.389063492534289,
+   "LPo": -1.8463824045829114
+  },
+  "olcut2_orta_MSP_mm": 5.6177229485586,
+  "olcut2_gecer": false,
+  "olcut3_biporion_mm": 88.73175868875812,
+  "olcut3_gecer": false,
+  "olcut4_maks_HU": {
+   "RPo": 50.0,
+   "LPo": 47.0
+  },
+  "olcut4_gecer": false,
+  "olcut5_sol_orbitale_mm_A": 7.170505223222292e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 67.70030205132205,
+  "olcut6_gecer_A": false,
+  "teshis_B_sol_orbitale_mm": 18.518177011872883,
+  "teshis_B_karsi_orbitale_mm": 30.35755944714609,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 1,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek10",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 56.018711905815124,
+   "LPo": -58.35871300586443
+  },
+  "olcut2_orta_MSP_mm": 1.1700005500246542,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 114.43706785827746,
+  "olcut3_gecer": false,
+  "olcut4_maks_HU": {
+   "RPo": 869.0,
+   "LPo": 743.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 6.856330398256226e-16,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 2.2164553964234526,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.7465157591473962,
+  "teshis_B_karsi_orbitale_mm": 0.7610369988438455,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 5,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek100",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 53.16325039788751,
+   "LPo": -54.24689808569663
+  },
+  "olcut2_orta_MSP_mm": 0.5418238439045632,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 107.44153061083966,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 1197.0,
+   "LPo": 1203.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 1.566341673601646e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 1.1177121601050621,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.38423903636795204,
+  "teshis_B_karsi_orbitale_mm": 0.39079516610125486,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek101",
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 1.4210854715202004e-14
+ },
+ {
+  "denek": "denek11",
+  "durum": "porion_kosulmadi"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 35.138372524362616,
+   "LPo": -55.71937797727792
+  },
+  "olcut2_orta_MSP_mm": 10.290502726457655,
+  "olcut2_gecer": false,
+  "olcut3_biporion_mm": 105.158000171171,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 882.0,
+   "LPo": 1110.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 1.2911803560302616e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 24.825698974796016,
+  "olcut6_gecer_A": false,
+  "teshis_B_sol_orbitale_mm": 5.626440363070985,
+  "teshis_B_karsi_orbitale_mm": 11.699239308715002,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 4,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek78",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 56.47482445328494,
+   "LPo": -52.40636807132141
+  },
+  "olcut2_orta_MSP_mm": 2.034228190981765,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 108.91259109946837,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 894.0,
+   "LPo": 1249.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 1.3647806474975178e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 1.1555626368165572,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.3963247063106619,
+  "teshis_B_karsi_orbitale_mm": 0.39978022596517315,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek86",
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 2.842170943040401e-14
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 62.71381982783162,
+   "LPo": -56.074402114204084
+  },
+  "olcut2_orta_MSP_mm": 3.3197088568137727,
+  "olcut2_gecer": false,
+  "olcut3_biporion_mm": 118.80014730630596,
+  "olcut3_gecer": false,
+  "olcut4_maks_HU": {
+   "RPo": 1183.0,
+   "LPo": 1468.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 4.0458131620541705e-16,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 0.6852894176037142,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.2264436844014763,
+  "teshis_B_karsi_orbitale_mm": 0.2255309514659567,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 4,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek92",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 57.339120733794715,
+   "LPo": -55.67714398898054
+  },
+  "olcut2_orta_MSP_mm": 0.830988372407091,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 113.02410141204396,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 1183.0,
+   "LPo": 1433.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 1.55096244690307e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 1.788835508122876,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.6089139430616163,
+  "teshis_B_karsi_orbitale_mm": 0.5931507931507982,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek93",
+  "durum": "olculdu",
+  "det_R": 0.9999999999999999,
+  "rijitlik_mm": 2.1316282072803006e-14
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 55.23044732294433,
+   "LPo": -59.71681711618633
+  },
+  "olcut2_orta_MSP_mm": 2.243184896620999,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 115.10962166561052,
+  "olcut3_gecer": false,
+  "olcut4_maks_HU": {
+   "RPo": 1394.0,
+   "LPo": 1051.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 7.581816032298558e-16,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 2.7939888731165365,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.9186394499777384,
+  "teshis_B_karsi_orbitale_mm": 0.9087374987445797,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 5,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek94",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 58.58904036275545,
+   "LPo": -51.515645340360365
+  },
+  "olcut2_orta_MSP_mm": 3.536697511197544,
+  "olcut2_gecer": false,
+  "olcut3_biporion_mm": 110.1675428608626,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 1523.0,
+   "LPo": 999.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 3.180163803882285e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 1.1252067658782343,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.3668377878303624,
+  "teshis_B_karsi_orbitale_mm": 0.37903580096272504,
+  "msp_cift_sayisi": 6,
+  "hukum_A": false,
+  "gecen_olcut_sayisi": 5,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek95",
+  "durum": "olculdu"
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 57.46714095420692,
+   "LPo": -52.84118967315607
+  },
+  "olcut2_orta_MSP_mm": 2.312975640525422,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 110.3245326298734,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 914.0,
+   "LPo": 899.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 6.449504562649955e-16,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 0.061885330375563825,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.021253403621133767,
+  "teshis_B_karsi_orbitale_mm": 0.021865395419466367,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek96",
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 1.4210854715202004e-14
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 53.21438821838742,
+   "LPo": -57.829689413227946
+  },
+  "olcut2_orta_MSP_mm": 2.307650597420269,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 111.10587293208218,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 1391.0,
+   "LPo": 1242.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 5.130462711986012e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 1.0292166319796632,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.3435168802754986,
+  "teshis_B_karsi_orbitale_mm": 0.36083836472594133,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek97",
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 2.842170943040401e-14
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 52.43427822843168,
+   "LPo": -53.31811551455839
+  },
+  "olcut2_orta_MSP_mm": 0.4419186430633593,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 105.81127066621964,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 772.0,
+   "LPo": 908.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 1.1134144672654926e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 0.027849019803027814,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.009769881856218037,
+  "teshis_B_karsi_orbitale_mm": 0.010098139038989293,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek98",
+  "durum": "olculdu",
+  "det_R": 1.0000000000000002,
+  "rijitlik_mm": 2.842170943040401e-14
+ },
+ {
+  "olcut1_karsit_taraf": true,
+  "olcut1_isaretli_uzaklik": {
+   "RPo": 56.92847262153742,
+   "LPo": -54.09821609698571
+  },
+  "olcut2_orta_MSP_mm": 1.4151282622758559,
+  "olcut2_gecer": true,
+  "olcut3_biporion_mm": 111.0520373518649,
+  "olcut3_gecer": true,
+  "olcut4_maks_HU": {
+   "RPo": 1305.0,
+   "LPo": 1395.0
+  },
+  "olcut4_gecer": true,
+  "olcut5_sol_orbitale_mm_A": 4.352257640963261e-15,
+  "olcut5_gecer_A": true,
+  "olcut6_karsi_orbitale_mm_A": 0.8501617185520617,
+  "olcut6_gecer_A": true,
+  "teshis_B_sol_orbitale_mm": 0.28933675735928976,
+  "teshis_B_karsi_orbitale_mm": 0.29646835507575814,
+  "msp_cift_sayisi": 6,
+  "hukum_A": true,
+  "gecen_olcut_sayisi": 6,
+  "olculen_olcut_sayisi": 6,
+  "denek": "denek99",
+  "durum": "olculdu",
+  "det_R": 1.0,
+  "rijitlik_mm": 2.842170943040401e-14
+ }
+]

@@ -8,6 +8,10 @@ torch 2.15**. Ucuncu taraf kodun GOVDESINE dokunulmadi; iki uyumsuzluk
 |---|---|---|
 | `AddChannel` monai >= 1.0'da KALDIRILDI | ozgun davranisi (`img[None]`) veren esdeger sinif | degismez |
 | `BorderPad` artik `MetaTensor` donuyor; kod `torch.from_numpy` bekliyor | Compose'un sonuna `_ToNumpy` eklendi | degismez |
+| `LoadImages` bellek yigilmasi (~5,4 GB; kap 7 GB) | saf yeniden siralama + ara kopyalarin serbest birakilmasi | degismez |
+
+`np.pad`'in `BorderPad` ile **bit duzeyinde ayni** oldugu kucuk bir dizide
+olculerek dogrulandi (fark 0,0).
 
 Ayni iki uyumsuzluk `0AD` §3'te 2026-11-09'da zaten kayitliydi; oradaki cozumle
 aynidir. Arastirmaci ucuncu taraf kodu calistirmaya acik izin verdi

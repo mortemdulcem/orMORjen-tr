@@ -115,5 +115,9 @@ def measure_side(ct, rows, org, mask, axis_ras, side, batch=40000):
                           medyan=round(float(np.median(v)), 2),
                           q1=round(float(np.percentile(v, 25)), 2),
                           q3=round(float(np.percentile(v, 75)), 2),
+                          # `04` §4.2: "uc degerli: ince p2 / medyan / kalin p98".
+                          # `otomasyon2.py:385-386` bu iki anahtari bekler.
+                          p2=round(float(np.percentile(v, 2)), 2),
+                          p98=round(float(np.percentile(v, 98)), 2),
                           min=round(float(v.min()), 2), maks=round(float(v.max()), 2))
     return out

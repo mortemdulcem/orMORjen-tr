@@ -249,6 +249,12 @@ Seçenekler: (a) ASO toleransı birincil kaynak olur, Howells türetmesi bağım
 doğrulama olarak kalır; (b) ikisi birlikte bildirilir; (c) hiçbir şey değişmez,
 bu bölüm yalnız doğrulama kaydı olarak durur.
 
+> ✅ **ARAŞTIRMACI KARARI (2026-11-10 21:1x): (b) — ikisi birlikte bildirilecek.**
+> Band sayısal olarak **değişmedi** (89,91–121,79; `frankfort.py` dokunulmadı);
+> tezde Howells türetmesi ile ASO toleransının örtüşmesi **birlikte** yazılacak.
+> AUB vekil değişken uyarısı (§3.3) tezde **kalmaya devam ediyor**, yanında
+> ASO'nun vekil değişken gerektirmeyen doğrulaması bildirilecek.
+
 ### 8.5 AÇIK — ölçüt 2'nin yerine geçecek kural bulundu
 `0AV` §4.1 ölçüt 2'nin yerine geçecek kuralın tam kohort ölçümünden **önce**
 sabitlenmesi gerektiğini yazmıştı. ASO'nun yön ölçütü (0,4 rad) + uzaklık ölçütü
@@ -256,6 +262,41 @@ sabitlenmesi gerektiğini yazmıştı. ASO'nun yön ölçütü (0,4 rad) + uzakl
 tamamının yerine geçebilir. Gereken: ALI'nin **yedi** landmarkı da çıkarması
 (`Ba, S, N` → CB grubu; `ROr, LOr` → U grubu; `GlobalVar.py` hepsini listeliyor).
 Şu an yalnız `RPo, LPo` çıkarılıyor.
+
+> ✅ **ARAŞTIRMACI KARARI (2026-11-10 21:1x): yedi landmark çıkarılacak.**
+
+### 8.5.1 Uygulama — modeller tamamlandı
+Eksik üç model (`Ba`, `S`, `N`) `lucanchling/ALI_CBCT` `models_v01` sürümünden
+indirildi (her biri ~108 MB, iki ölçek). Yedi landmarkın tamamı artık
+`/home/claude/ali/models/<LM>/{1,0-3}/` düzeninde. Koşucu: `porion/kos7.sh`.
+
+**Düzeltilen tuzak:** ALI çıktıyı **grup başına ayrı dosyaya** yazar
+(`GlobalVar.py`: `Ba,S,N,RPo,LPo` → CB grubu; `ROr,LOr` → U grubu). İlk koşuda
+betik `find ... | head -1` ile yalnız **bir** dosyayı alıyordu ve sessizce iki
+landmark döndürüyordu. `an/birlestir_mrk.py` bütün grup dosyalarını birleştirir;
+koordinat sistemi uyuşmazlığında ve aynı etiketin iki dosyada farklı gelmesinde
+**hata verir**, sessizce birini seçmez.
+
+### 8.5.2 ⚠ NASİON BULUNAMIYOR — ölçülmüş
+denek98'de yedi landmarktan **altısı** geldi (`Ba, S, RPo, LPo, ROr, LOr`);
+**N bulunamadı.** ALI günlüğü:
+
+```
+Searching landmark : N
+Landmark found at scale : 0
+Agent pos =  [ 81.  68. 127.]
+WARNING : Agent trying to go in a none existing space   (x3)
+N landmark not found
+Fails for N : 1/1
+```
+
+Etmen 0,3 mm ölçeğinde **hacmin dışına çıkıyor**. Bu bir **altyapı kusurudur**,
+yöntem hükmü değildir (`0AU` §4 ayrımı). Kohort genelindeki sıklığı ölçülüyor.
+
+> ⭐ **YAN DOĞRULAMA:** yedi landmarklı koşuda denek98'in porionları, iki
+> landmarklı koşunun ürettiğiyle **bit düzeyinde aynı** (fark 0,0000 mm; bi-porion
+> 105,811 ↔ 105,811). Yani landmark listesini genişletmek mevcut noktaları
+> değiştirmiyor — `0AD`'nin determinizm kaydı bir kez daha doğrulandı.
 
 ### 8.6 Çatı değiştirilmesi ÖNERİLMİYOR
 `tez/10` §7 analitik üç noktalı tanımı yazıyor ve GPA zaten dönmeyi giderdiği için

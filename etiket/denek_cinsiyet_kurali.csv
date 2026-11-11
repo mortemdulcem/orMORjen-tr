@@ -1,0 +1,7 @@
+# KOHORT CINSIYET KURALI — arastirmaci bildirimi, 2026-11-11 21:59
+# denek1 - denek100   (1 ve 100 DAHIL)  = ERKEK
+# denek201 - denek300 (201 ve 300 DAHIL) = KADIN
+# denek101-200 arasi: kural YOK, bilinmiyor (denek101, denek102 bu araliktadir)
+aralik_bas,aralik_son,cinsiyet
+1,100,E
+201,300,K

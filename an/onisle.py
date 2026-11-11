@@ -97,3 +97,37 @@ def dicom_hacim(kaynak):
     bilgi['orta_kesit_ozeti'] = hashlib.sha256(np.ascontiguousarray(orta).tobytes()).hexdigest()[:16]
     bilgi['tam_ozet'] = hashlib.sha256(np.ascontiguousarray(hacim).tobytes()).hexdigest()[:24]
     return hacim, bilgi
+
+
+def nrrd_hacim(kaynak):
+    """NRRD dosyasini okur -> (hacim, bilgi); `dicom_hacim` ile AYNI sozlesme.
+
+    Hasta sahnelerinin (hasta5-11) BT'si DICOM degil NRRD'dir. Burada yalniz
+    GIRIS bicimi degisir; olcum mantigi hic degismez. Dizi sirasi `dicom_hacim`
+    ile ayni tutulur: SimpleITK (z,y,x) dondurur ve AYNEN birakilir, cunku
+    `otomasyon2` kendisi transpose eder (cift transpoz tuzagi, `0AT`).
+    DICOM'a ozgu alanlar (cekirdek, kVp, UID ozetleri) bos birakilir.
+    """
+    img = sitk.ReadImage(kaynak)
+    a = sitk.GetArrayFromImage(img)
+    hacim = a
+    sp = img.GetSpacing()
+    bilgi = dict(
+        kesit=int(hacim.shape[0]), boyut=list(hacim.shape),
+        voksel_mm=round(float(sp[0]), 6),
+        kesit_kalinligi=float(sp[2]), cekirdek='', kVp=0.0,
+        WindowCenter=None, WindowWidth=None,
+        SeriesDescription='NRRD', ProtocolName='', StudyDescription='',
+        BodyPartExamined='', ImageType=[],
+        SeriesUID_ozet='', StudyUID_ozet='',
+        spacing=[float(x) for x in sp],
+        PixelSpacing=[float(sp[0]), float(sp[1])],
+        kesit_araligi=float(sp[2]),
+        anizotropi=round(float(sp[2]) / float(sp[0]), 3),
+        origin=[float(x) for x in img.GetOrigin()],
+        direction=[float(x) for x in img.GetDirection()],
+    )
+    orta = hacim[:, :, hacim.shape[2] // 2]
+    bilgi['orta_kesit_ozeti'] = hashlib.sha256(np.ascontiguousarray(orta).tobytes()).hexdigest()[:16]
+    bilgi['tam_ozet'] = hashlib.sha256(np.ascontiguousarray(hacim).tobytes()).hexdigest()[:24]
+    return hacim, bilgi

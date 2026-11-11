@@ -71,7 +71,11 @@ def orbita_bul(ct, rows, org, ayrinti=False):
     mx = ndi.maximum_filter(D, size=(9, 9, 5))
     tepe = aday & (D >= mx - 1e-6)
     idx = np.argwhere(tepe); dv = D[tepe]
-    srt = np.argsort(dv)[::-1][:600]
+    # `0BK`: SAYI kesmesi kaldirildi. Eski kod ilk 600 tepeyi aliyordu; voksel
+    # kuculdukce tepe sayisi artiyor ve kontenjani beyin bolgeleri (D maks ~39 mm)
+    # dolduruyor, orbitalar listeye giremiyordu (denek250: 917 tepe -> 7 kume -> 1 aday).
+    # 14 mm teklestirme ve 60 kume siniri AYNEN kalir; onlar fiziksel olcutlerdir.
+    srt = np.argsort(dv)[::-1]
     idx, dv = idx[srt], dv[srt]
     ras = ijk2ras(idx.astype(float))
     tut = []

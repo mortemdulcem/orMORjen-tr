@@ -65,8 +65,10 @@ def cerceve(E, apex, lm, po=None):
     ol = np.asarray(lm['o-l'], float)
     nf = np.cross(L - R, ol - R)                # klasik 3 nokta Frankfort normali
     nf = nf / np.linalg.norm(nf)
-    u = np.cross(n, nf)                         # Frankfort normaline dik, duzlem icinde
-    u = u - np.dot(u, n) * n
+    # Frankfort normali ANATOMIK "yukari"dir; dunya +z surumu nasil `up`'i duzleme
+    # izdusuruyorsa, burada da `nf` izdusurulur. (Ilk yazimda `cross(n, nf)` kullandim:
+    # o YANAL eksen verir, yukari degil — atlas sacilimi 67-120 dereceye firladi.)
+    u = nf - np.dot(nf, n) * n
     u = u / np.linalg.norm(u)
     if u[2] < 0:
         u = -u                                  # dunya +z surumuyle ayni yonde (YUKARI)

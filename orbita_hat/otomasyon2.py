@@ -95,7 +95,12 @@ def kimlik_denetimi(pi, kimlik):
 
 
 def atlas_yukle(disla=None):
-    RA = json.load(open(os.path.join(AN, "out/rimatlas.json"), encoding="utf-8"))
+    # `0BH`: cerceve anatomikse atlas acilari da ANATOMIK cercevede turetilmis
+    # dosyadan okunur; ikisi ayrilirsa her nokta cerceve donmesi kadar kayar.
+    _RA_AD = ("out/rimatlas_anatomik.json"
+              if os.environ.get("ORBITA_CERCEVE", "dunya_z") == "anatomik"
+              else "out/rimatlas.json")
+    RA = json.load(open(os.path.join(AN, _RA_AD), encoding="utf-8"))
     AA = json.load(open(os.path.join(AN, "out/apeks_atlas.json"), encoding="utf-8"))
     sek, kullanilan = [], []
     for ad, F in ATLAS_OLGU:

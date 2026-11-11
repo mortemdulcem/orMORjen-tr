@@ -9,6 +9,7 @@ Zincir:
  6. apex                : isin maskesinin en arka noktasi
 """
 import sys, json
+import os
 sys.path.insert(0, '/home/claude/an')
 import numpy as np, params, rayseg, rimcurve, bul
 
@@ -133,6 +134,9 @@ def _ek_alan(E, c, u, v, mf_noktasi):
     return Ed[en[1]]
 
 
+_CERCEVE = os.environ.get('ORBITA_CERCEVE', 'dunya_z')
+
+
 def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False,
            apeks_atlas=None, tur=3, mso_anat=None):
     """14 landmarki dondur. atlas_sekil: (14,3) ortalama sekil; rim_atlas: nokta->(aci, r).
@@ -174,7 +178,14 @@ def tespit(ct, rows, org, atlas_sekil, rim_atlas, ayrinti=False,
             if E2 is None:
                 break
             E = np.asarray(E2, float)
-            c, n, u, v = _duzlem_cerceve(E, mrk)
+            # `0BH`: yerlestirme cercevesi. Varsayilan DUNYA +z (donmus hat, `0K` §1).
+            # ORBITA_CERCEVE=anatomik ise MSP normalinden turetilen cerceve kullanilir
+            # ve atlas acilari da ayni cercevede turetilmis olmak ZORUNDADIR
+            # (`out/rimatlas_anatomik.json`) — yoksa her nokta cerceve donmesi kadar kayar.
+            if _CERCEVE == 'anatomik':
+                c, n, u, v = _duzlem_cerceve_anatomik(E, mrk, son)
+            else:
+                c, n, u, v = _duzlem_cerceve(E, mrk)
             cnuv = (c, n, u, v)
             kosulan += 1
             for b in ORD:

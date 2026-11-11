@@ -28,7 +28,17 @@ import sablon
 import yuzey as Y
 
 OLGULAR = ('hasta5', 'hasta6', 'hasta7', 'hasta8', 'hasta9', 'hasta10', 'hasta11')
+if os.environ.get('APEKS_OLGULAR'):
+    OLGULAR = tuple(os.environ['APEKS_OLGULAR'].split(','))
 DS = int(os.environ.get('APEKS_DS', '4'))   # `0M` ~800 sn/olgu kaydetmis; ds=4 100 sn verdi
+
+# `0AY` on kaydi: CraniumPy'nin YAYIMLANMIS varsayilani (Apache-2.0,
+# DOI 10.5281/zenodo.7430069, src/craniumpy_core/registration/nicp.py).
+# Dis kaynakli sabit; bizim secimimiz degil. APEKS_CIZELGE=dis ile acilir.
+CIZELGE = {}
+if os.environ.get('APEKS_CIZELGE') == 'dis':
+    import numpy as _np
+    CIZELGE = {'alphalar': tuple(_np.linspace(200, 1, 20)), 'ic_tur': 3}
 
 
 def _duzlem(lm, egriler, s):
@@ -50,7 +60,7 @@ def derinlik(lm, egriler, s, apeks):
 
 
 def kos(cikti=None):
-    cikti = cikti or '/home/claude/an/out/apeks_loo_ds%d.json' % DS
+    cikti = cikti or os.environ.get('APEKS_CIKTI') or '/home/claude/an/out/apeks_loo_ds%d.json' % DS
     print('ds = %d' % DS, flush=True)
     kut = {ad: sablon.yukle(ad, ds=DS) for ad in OLGULAR}
     print('sablon tepe sayisi: %s' % {a: int(k['v'].shape[0]) for a, k in kut.items()}, flush=True)
@@ -61,7 +71,7 @@ def kos(cikti=None):
         S = kut[hedef]
         lm = S['lm']
         hiza = {k: lm[k] for k in A.HIZA_NOKTA if k in lm}       # apeks YOK
-        kes, bilgi = A.kestir(S['v'], hiza, kayit)
+        kes, bilgi = A.kestir(S['v'], hiza, kayit, **CIZELGE)
         _, egriler = params.load_scene(
             [o for o in sablon.OLGULAR if o[0] == hedef][0][1])
         r = {'olgu': hedef, 'sure_sn': round(time.time() - t0, 1)}

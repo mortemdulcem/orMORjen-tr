@@ -1,0 +1,114 @@
+[
+ {
+  "olgu": "hasta5",
+  "sure_sn": 88.9,
+  "sag": {
+   "hata_3b_mm": 3.371,
+   "derinlik_kestirim": 39.983,
+   "derinlik_elle": 43.271,
+   "yayilim_mm": 2.36
+  },
+  "sol": {
+   "hata_3b_mm": 7.088,
+   "derinlik_kestirim": 35.541,
+   "derinlik_elle": 42.101,
+   "yayilim_mm": 3.4
+  }
+ },
+ {
+  "olgu": "hasta6",
+  "sure_sn": 81.6,
+  "sag": {
+   "hata_3b_mm": 3.515,
+   "derinlik_kestirim": 35.166,
+   "derinlik_elle": 38.089,
+   "yayilim_mm": 2.75
+  },
+  "sol": {
+   "hata_3b_mm": 3.957,
+   "derinlik_kestirim": 35.588,
+   "derinlik_elle": 37.402,
+   "yayilim_mm": 2.63
+  }
+ },
+ {
+  "olgu": "hasta7",
+  "sure_sn": 86.9,
+  "sag": {
+   "hata_3b_mm": 1.19,
+   "derinlik_kestirim": 39.682,
+   "derinlik_elle": 39.023,
+   "yayilim_mm": 2.33
+  },
+  "sol": {
+   "hata_3b_mm": 1.629,
+   "derinlik_kestirim": 40.428,
+   "derinlik_elle": 41.614,
+   "yayilim_mm": 2.67
+  }
+ },
+ {
+  "olgu": "hasta8",
+  "sure_sn": 65.8,
+  "sag": {
+   "hata_3b_mm": 1.106,
+   "derinlik_kestirim": 40.445,
+   "derinlik_elle": 41.322,
+   "yayilim_mm": 3.26
+  },
+  "sol": {
+   "hata_3b_mm": 1.703,
+   "derinlik_kestirim": 41.275,
+   "derinlik_elle": 41.66,
+   "yayilim_mm": 2.65
+  }
+ },
+ {
+  "olgu": "hasta9",
+  "sure_sn": 74.1,
+  "sag": {
+   "hata_3b_mm": 3.467,
+   "derinlik_kestirim": 41.382,
+   "derinlik_elle": 42.442,
+   "yayilim_mm": 2.93
+  },
+  "sol": {
+   "hata_3b_mm": 3.112,
+   "derinlik_kestirim": 40.67,
+   "derinlik_elle": 41.594,
+   "yayilim_mm": 3.26
+  }
+ },
+ {
+  "olgu": "hasta10",
+  "sure_sn": 66.6,
+  "sag": {
+   "hata_3b_mm": 3.479,
+   "derinlik_kestirim": 40.896,
+   "derinlik_elle": 39.828,
+   "yayilim_mm": 2.24
+  },
+  "sol": {
+   "hata_3b_mm": 5.213,
+   "derinlik_kestirim": 42.427,
+   "derinlik_elle": 39.196,
+   "yayilim_mm": 2.21
+  }
+ },
+ {
+  "olgu": "hasta11",
+  "sure_sn": 71.5,
+  "sag": {
+   "hata_3b_mm": 3.195,
+   "derinlik_kestirim": 42.811,
+   "derinlik_elle": 40.088,
+   "yayilim_mm": 2.15
+  },
+  "sol": {
+   "hata_3b_mm": 2.205,
+   "derinlik_kestirim": 43.807,
+   "derinlik_elle": 42.054,
+   "yayilim_mm": 1.78
+  }
+ }
+]

@@ -49,7 +49,8 @@ def _uygula(P, s, R, t):
 
 
 def kestir_tek(sablon, hedef_v, hedef_lm_hiza, alphalar=ALPHA, ic_tur=2,
-               ayrinti=False):
+               ayrinti=False, hedef_nokta=None, hiza_nokta=None,
+               motor=None, hedef_f=None):
     """Bir sablondan d/mf kestirimi.
 
     sablon        : sablon.yukle() cikti sozlugu (v, f, lm)
@@ -57,7 +58,9 @@ def kestir_tek(sablon, hedef_v, hedef_lm_hiza, alphalar=ALPHA, ic_tur=2,
     hedef_lm_hiza : hedefin 12 medial-olmayan noktasi {ad: (3,)} — elle ya da
                     hattin kestirimi; d/mf ICERMEZ ve kullanilmaz
     """
-    ad = [k for k in HIZA_NOKTA if k in hedef_lm_hiza and k in sablon['lm']]
+    HN = tuple(hedef_nokta) if hedef_nokta else HEDEF_NOKTA
+    HZ = tuple(hiza_nokta) if hiza_nokta else HIZA_NOKTA
+    ad = [k for k in HZ if k in hedef_lm_hiza and k in sablon['lm']]
     if len(ad) < 6:
         return None, {'hata': 'hizalama icin yeterli nokta yok (%d)' % len(ad)}
     A = np.array([sablon['lm'][k] for k in ad])
@@ -65,9 +68,15 @@ def kestir_tek(sablon, hedef_v, hedef_lm_hiza, alphalar=ALPHA, ic_tur=2,
     s, R, t = procrustes(A, B)
     Vs = _uygula(sablon['v'], s, R, t)
     Ls = {k: _uygula(v, s, R, t) for k, v in sablon['lm'].items()}
-    TV, X = N.nicp(Vs, sablon['f'], hedef_v, alphalar=alphalar, ic_tur=ic_tur,
-                   ayrinti=ayrinti)
-    out = {k: N.nokta_aktar(Ls[k], Vs, X) for k in HEDEF_NOKTA}
+    if motor == 'cranium':
+        # `0AZ` on kaydi: CraniumPy'nin KENDI motoru (Apache-2.0).
+        import cranium_nicp as CN
+        TV, X = CN.nicp(Vs, sablon['f'], hedef_v, hedef_f=hedef_f,
+                        alphalar=alphalar, ic_tur=ic_tur, ayrinti=ayrinti)
+    else:
+        TV, X = N.nicp(Vs, sablon['f'], hedef_v, alphalar=alphalar,
+                       ic_tur=ic_tur, ayrinti=ayrinti)
+    out = {k: N.nokta_aktar(Ls[k], Vs, X) for k in HN}
     bilgi = {'hizalama_noktasi': len(ad), 'olcek': round(float(s), 4),
              'yuzey_kaymasi_mm': round(float(np.linalg.norm(TV - Vs, axis=1).mean()), 3),
              'kati_oncesi_hata_mm': round(float(np.linalg.norm(
@@ -76,21 +85,25 @@ def kestir_tek(sablon, hedef_v, hedef_lm_hiza, alphalar=ALPHA, ic_tur=2,
 
 
 def kestir(hedef_v, hedef_lm_hiza, kutuphane, alphalar=ALPHA, ic_tur=2,
-           ayrinti=False):
+           hedef_nokta=None, hiza_nokta=None,
+           ayrinti=False, motor=None, hedef_f=None):
     """Butun sablonlardan kestirip MEDYAN ve YAYILIM dondurur."""
-    tek, bilgiler = {k: [] for k in HEDEF_NOKTA}, {}
+    HN = tuple(hedef_nokta) if hedef_nokta else HEDEF_NOKTA
+    tek, bilgiler = {k: [] for k in HN}, {}
     for s in kutuphane:
-        o, b = kestir_tek(s, hedef_v, hedef_lm_hiza, alphalar, ic_tur)
+        o, b = kestir_tek(s, hedef_v, hedef_lm_hiza, alphalar, ic_tur,
+                          hedef_nokta=HN, hiza_nokta=hiza_nokta,
+                          motor=motor, hedef_f=hedef_f)
         bilgiler[s['ad']] = b
         if o is None:
             continue
-        for k in HEDEF_NOKTA:
+        for k in HN:
             tek[k].append(o[k])
         if ayrinti:
             print('     %-8s olcek %.3f  yuzey kaymasi %.2f mm'
                   % (s['ad'], b['olcek'], b['yuzey_kaymasi_mm']))
     son, yay, koord = {}, {}, {}
-    for k in HEDEF_NOKTA:
+    for k in HN:
         if not tek[k]:
             son[k], yay[k], koord[k] = None, None, None; continue
         P = np.array(tek[k])
@@ -111,7 +124,7 @@ def kestir(hedef_v, hedef_lm_hiza, kutuphane, alphalar=ALPHA, ic_tur=2,
                      koord_medyan={k: ([round(float(x), 4) for x in v]
                                        if v is not None else None)
                                    for k, v in koord.items()},
-                     sablon_sayisi=len(tek[HEDEF_NOKTA[0]]),
+                     sablon_sayisi=len(tek[HN[0]]),
                      tek_kestirimler={k: [[round(float(x), 4) for x in p]
-                                          for p in tek[k]] for k in HEDEF_NOKTA},
+                                          for p in tek[k]] for k in HN},
                      sablon_bilgi=bilgiler)

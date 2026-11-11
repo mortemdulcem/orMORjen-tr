@@ -65,13 +65,17 @@ def kos(cikti=None):
     kut = {ad: sablon.yukle(ad, ds=DS) for ad in OLGULAR}
     print('sablon tepe sayisi: %s' % {a: int(k['v'].shape[0]) for a, k in kut.items()}, flush=True)
     sonuc = []
-    for hedef in OLGULAR:
+    hedefler = tuple(os.environ['APEKS_HEDEF'].split(',')) if os.environ.get('APEKS_HEDEF') else OLGULAR
+    for hedef in hedefler:
         t0 = time.time()
         kayit = [k for ad, k in kut.items() if ad != hedef]      # olgu-birak-bir
         S = kut[hedef]
         lm = S['lm']
         hiza = {k: lm[k] for k in A.HIZA_NOKTA if k in lm}       # apeks YOK
-        kes, bilgi = A.kestir(S['v'], hiza, kayit, **CIZELGE)
+        kw = dict(CIZELGE)
+        if os.environ.get('APEKS_MOTOR') == 'cranium':
+            kw.update(motor='cranium', hedef_f=S['f'])
+        kes, bilgi = A.kestir(S['v'], hiza, kayit, **kw)
         _, egriler = params.load_scene(
             [o for o in sablon.OLGULAR if o[0] == hedef][0][1])
         r = {'olgu': hedef, 'sure_sn': round(time.time() - t0, 1)}

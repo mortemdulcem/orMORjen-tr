@@ -102,3 +102,66 @@ Araştırmacı CraniumPy için izin verdiğini bildirdi (2026-11-09) ve depo
 bağımsız olarak **Apache-2.0** taşıdığı doğrulandı. Bu koşuda CraniumPy'nin
 **kodu kopyalanmıyor**; yalnızca yayımlanmış varsayılan sayı değerleri dış
 referans olarak alınıyor. Atıf tezin yöntem bölümüne girer.
+
+---
+
+## 6. SONUÇ — İKİ ÖNGÖRÜ DE TUTMADI, APEKS KAPANDI (2026-11-11, 08:4x)
+
+Koşu: `an/apeks_loo.py`, `APEKS_CIZELGE=dis`, ds=4, iki paralel işçi
+(hasta5–8 / hasta9–11), çıktı `an/out/apeks_loo_dis.json`.
+
+### 6.1 Öngörü A — SÜRE: TUTMADI
+
+Ölçülen **166–306 sn/olgu, ortanca 265 sn.** Öngörü 600–900 sn idi;
+`0M` §5 ~800 sn kaydetmişti. Çizelgeyi 10 çözümden 60 çözüme çıkarmak süreyi
+altı kat değil yalnız ~2,6 kat artırdı. **Çizelge hipotezi süre tarafından
+yanlışlandı** — ve bu, hata sayılarına bakılmadan saptandı.
+
+### 6.2 Öngörü B — ÖLÇÜTLER: İKİSİ RET
+
+| # | ölçüt | taban | `0M` | ds=4 | ds=2 | **dış çizelge** |
+|---|---|---|---|---|---|---|
+| 1 | apeks 3B hatası ort | < 5,14 mm | 2,69 | 3,49 | 3,47 | **3,41** E |
+| 2 | derinlik MAE | < 1,72 mm | 1,65 | 2,24 | 2,05 | **2,05 RET** |
+| 3 | sağ/sol farklı | ≥ 6/7 | 7/7 | 6/7 | 5/7 | **2/7 RET** |
+
+### 6.3 Mekanizma — ince çizelge YANLIŞ YÖNDE
+
+| | yanlılık | saçılım (ss) | r |
+|---|---|---|---|
+| `0M` | +1,110 | 1,787 | +0,542 |
+| ds=4 | −0,308 | 2,901 | +0,364 |
+| ds=2 | +0,260 | 2,559 | +0,446 |
+| dış çizelge | **−1,095** | 2,570 | **+0,286** |
+
+Ölçüt 3, kademe sayısı arttıkça **6/7 → 5/7 → 2/7** diye çöktü. Sağ ve sol
+kestirimler birbirine yapışıyor (hasta6'da 0,075 mm, hasta7'de 0,294 mm).
+Sebep anlaşılır: daha sıkı ve daha kademeli bir oturma şablonun KENDİ
+apeksine yakın kalır, hedefin yüzeyine esnemez — yani `0M` §3'ün atlas
+formülüne yaptığı eleştirinin aynısı burada NICP'in içinde yeniden üretiliyor.
+Ölçüt 3 tam olarak bu batma biçimini yakalamak için konmuştu ve yakaladı.
+
+**Sonuç: `0M`'in 7/7 + düşük saçılımı çizelgeyi inceltmekle elde edilemez.
+Yön yanlış.** Dördüncü deneme için bir hipotez de kalmadı.
+
+### 6.4 HÜKÜM — `0AY` §4'ün yazdığı gibi
+
+1. Apeks **BT'den otomatik ölçülemedi.** Teze bu cümleyle girer.
+2. `kohort_98.csv`'nin 10 apeks sütunu **kalıcı olarak boş** kalır.
+3. `0M` §10.3'ün dört Cureus parametresi (`mf/ek/mso/o–apeks`) teze **girmez.**
+4. **Dördüncü deneme yapılmaz.** `0M` §5.1'in üç ölçütü tükenmiştir.
+5. `0M` §5.3c değişmez: dik izdüşüm derinliği cinsiyet çıkarımına zaten
+   girmiyordu. Bu kapanış **cinsiyet analizinde hiçbir kayıp yaratmaz** —
+   yalnız §10.3'ün dört betimleyici ölçüsünü ve apeks sütunlarını kaybettirir.
+6. Özgün kod (`an/derinlik/apeks_nicp.py`) bulunursa hüküm yeniden açılabilir;
+   yeniden kurulumla değil, yalnız özgün kodla.
+
+### 6.5 Teze yazılacak sınırlılık metni (taslak)
+
+*"Orbital apeks (optik kanalın kemik ağzı), bu çalışmanın tam otomatik
+hattında güvenilir biçimde ölçülememiştir. Üç bağımsız yöntem denenmiştir:
+kesitte kapalı kemik halka arama, kemik koninin daralma profili ve çok
+şablonlu doğrusal olmayan yüzey kaydı (NICP). Yedi elle işaretlenmiş olguda
+olgu-bırak-bir doğrulamasında derinlik ortalama mutlak hatası 2,05 mm'de
+kalmış ve sabit kestirici tabanını (1,72 mm) geçememiştir. Apeksten türetilen
+parametreler bu nedenle raporlanmamıştır."*

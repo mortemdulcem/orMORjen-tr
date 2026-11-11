@@ -95,7 +95,8 @@ def yukle(ad, ds=4, yeniden=False):
 def kutuphane(ds=4, disla=None, yeniden=False, ayrinti=True):
     """Butun sablonlari (istege gore birini dislayarak) dondur."""
     out = []
-    for ad, _, _, kod in OLGULAR:
+    for k0 in OLGULAR:
+        ad, _, _, kod = k0[:4]
         if disla and ad == disla:
             continue
         s = yukle(ad, ds=ds, yeniden=yeniden)

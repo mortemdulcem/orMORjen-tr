@@ -2,10 +2,18 @@
 """NICP — Esnek olmayan ICP (Amberg, Romdhani & Vetter 2007, "Optimal Step
 Nonrigid ICP Algorithms for Surface Registration", CVPR).
 
-NEDEN KENDIMIZ YAZDIK: T-AbdelAlim/CraniumPy'da okunakli bir scipy uygulamasi var
-ama o deponun LICENSE dosyasi YOK (varsayilan: butun haklari sakli) — kodu
-kopyalanamaz. Bu dosya yayinlanmis formulasyondan yazilmistir ve trimesh/open3d
-bagimliligi yoktur; yalniz numpy + scipy.sparse.
+NEDEN KENDIMIZ YAZDIK: yazildigi sirada T-AbdelAlim/CraniumPy'nin LICENSE
+dosyasi YOKTU (varsayilan: butun haklari sakli) — kodu kopyalanamazdi. Bu dosya
+yayinlanmis formulasyondan yazilmistir ve trimesh/open3d bagimliligi yoktur;
+yalniz numpy + scipy.sparse.
+  ⚠ 2026-11-10 GUNCELLEME: o depo ARTIK Apache License 2.0 tasiyor (son isleme
+  2026-11-09) ve citation.cff ile DOI'si var: 10.5281/zenodo.7430069,
+  Abdel-Alim T., CraniumPy v0.3.0. Yani engel kalkmistir. BU DOSYA YINE DE
+  DEGISTIRILMEDI: `0M` SS5'in dogrulanmis sayilari (apeks 3B hatasi 2,69 mm,
+  derinlik MAE 1,65 mm) BU uygulamayla uretildi; baska bir NICP'e gecmek `0K`
+  SS1 geregi ayri on kayit ve yeniden olcum ister. CraniumPy'nin uygulamasi
+  BAGIMSIZ DOGRULAMA olarak kullanilir (ikisi de Amberg ve ark. 2007'den,
+  ayri ayri yazilmis).
 
 NEDEN CPD DEGIL: pycpd yogun M x M Gauss cekirdegi ve E adiminda M x N x 3 dizi
 kuruyor; orbita kutusunun izo-yuzeyi 328.891 tepe veriyor -> G matrisi 806 GB.

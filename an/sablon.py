@@ -46,13 +46,26 @@ def _bt_bul(klasor, tercih=None):
     return aday[0]
 
 
-def landmarklar(klasor):
+def landmarklar(klasor, yedek=None):
+    """yedek: `OLGULAR` kaydinin 5. ogesi. Yalniz EKSIK landmarklar oradan
+    tamamlanir; klasorde bulunan hicbir nokta degistirilmez (hasta6 olcum3'te
+    `o-r` yok, veri setinin yaptigi gibi olcum2'den gelir -- OLGULAR notu)."""
     lm, _ = params.load_scene(klasor)
     for a, b in (('fso-r', 'mso-r'), ('fso-l', 'mso-l'),
                  ('mfo-r', 'fmo-r'), ('mfo-l', 'fmo-l')):
         if a in lm and b not in lm:
             lm[b] = lm[a]
     eksik = [k for k in AD14 if k not in lm]
+    if eksik and yedek and os.path.isdir(yedek):
+        ylm, _ = params.load_scene(yedek)
+        for a, b in (('fso-r', 'mso-r'), ('fso-l', 'mso-l'),
+                     ('mfo-r', 'fmo-r'), ('mfo-l', 'fmo-l')):
+            if a in ylm and b not in ylm:
+                ylm[b] = ylm[a]
+        for k in list(eksik):
+            if k in ylm:
+                lm[k] = ylm[k]
+        eksik = [k for k in AD14 if k not in lm]
     if eksik:
         raise KeyError('%s: eksik landmark %s' % (klasor, eksik))
     return {k: np.asarray(lm[k], float) for k in AD14}
@@ -63,10 +76,12 @@ def yukle(ad, ds=4, yeniden=False):
     kayit = [o for o in OLGULAR if o[0] == ad]
     if not kayit:
         raise KeyError('bilinmeyen olgu: %s' % ad)
-    _, klasor, tercih, kod = kayit[0]
+    k0 = kayit[0]
+    _, klasor, tercih, kod = k0[:4]
+    yedek = k0[4] if len(k0) > 4 else None       # `OLGULAR` 5. oge (hasta6)
     os.makedirs(ONBELLEK, exist_ok=True)
     yol = os.path.join(ONBELLEK, '%s_ds%d.npz' % (ad, ds))
-    L = landmarklar(klasor)
+    L = landmarklar(klasor, yedek)
     if os.path.exists(yol) and not yeniden:
         z = np.load(yol)
         return dict(ad=ad, kod=kod, v=z['v'], f=z['f'],

@@ -46,6 +46,9 @@ def aciklik(ct, rows, org, merkez, r_maks=45.0, adim=0.5):
     return oran, (nrm / nn if nn > 1e-6 else None), d
 
 
+_KAFA_MERKEZI = None
+
+
 def orbita_bul(ct, rows, org, ayrinti=False):
     sp = np.array([abs(rows[0, 0]), abs(rows[1, 1]), abs(rows[2, 2])], float)
 
@@ -59,6 +62,9 @@ def orbita_bul(ct, rows, org, ayrinti=False):
         boy = ndi.sum(np.ones_like(lab), lab, range(1, n + 1))
         kafa = (lab == (1 + int(np.argmax(boy))))
     kafa = ndi.binary_fill_holes(kafa)
+    global _KAFA_MERKEZI
+    _ix = np.array(ndi.center_of_mass(kafa), float)
+    _KAFA_MERKEZI = ((rows.T @ _ix.reshape(3, 1)).T[0] + org) * np.array([-1., -1., 1.])
     yum = kafa & (~bone) & (ct > -200)
     D = edt(yum, sampling=sp)
     aday = (D > 9.0) & (D < 20.0)
@@ -84,7 +90,9 @@ def orbita_bul(ct, rows, org, ayrinti=False):
         # aciklik makul buyuklukte ve ONE bakiyor olmali (A bileseni baskin)
         if not (0.02 <= oran <= 0.45):
             continue
-        if nrm[1] <= 0.45:                 # A bileseni; one bakmayanlari at
+        _d = np.asarray(p, float) - _KAFA_MERKEZI
+        _nd = np.linalg.norm(_d)
+        if _nd < 1e-9 or float(np.dot(nrm, _d / _nd)) < 0.45:   # DISA bakiyor mu
             continue
         gecen.append(dict(p=p, D=d, oran=oran, n=nrm))
     if ayrinti:

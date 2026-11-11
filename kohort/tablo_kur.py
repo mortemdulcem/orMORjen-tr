@@ -54,7 +54,15 @@ def satir(denek, basliklar, damga):
     sd = np.array(h['space directions'], float)
     sp = float(np.linalg.norm([r for r in sd if not np.isnan(r).any()][0]))
     den = R.get('denetim', {})
-    red, uya = den.get('red', []), den.get('uyari', [])
+    # `olcum_zinciri.denetle` BUTUN kapi sonuclarini tek listeye ('uyari') yazar;
+    # kirmizi/uyari ayrimi her kaydin 'sonuc' alanindadir. Eski raporlarda ayri bir
+    # 'red' anahtari vardi; o bicim de desteklenir (2026-11-11, `0BF`).
+    if 'red' in den:
+        red, uya = den['red'], den['uyari']
+    else:
+        hepsi = den.get('uyari', [])
+        red = [g for g in hepsi if g.get('sonuc') == 'RED']
+        uya = [g for g in hepsi if g.get('sonuc') != 'RED']
     cek, kemik = AS_KAYIT.get(denek, ('', ''))
 
     s = {k: '' for k in basliklar}
@@ -72,6 +80,11 @@ def satir(denek, basliklar, damga):
     s['uyari_kapilari'] = ';'.join(sorted({g.get('kapi', '') for g in uya}))
     # mevcut 94 satirin yazimi 'True'/'False' -- ayni bicim korunur
     s['havuz'] = str(bool(den.get('hacim_veri_setine_yazilabilir')))
+    # capraz denetim (`0BF` §7): havuz bayragi `denetle()` icinde kirmizidan BAGIMSIZ
+    # hesaplanir, bu yuzden bu sinav dongusel degildir. Uyusmazsa satir YAZILMAZ.
+    if (len(red) > 0) == bool(den.get('hacim_veri_setine_yazilabilir')):
+        raise AssertionError('%s: RED=%d ile havuz=%s celisiyor — satir yazilmadi'
+                             % (denek, len(red), den.get('hacim_veri_setine_yazilabilir')))
     return s
 
 

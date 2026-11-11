@@ -20,21 +20,45 @@ Kullanım yalnız araştırmacının aldığını bildirdiği izne dayanır. **�
 yazılı metni arşivlenmelidir** (IMAIOS ve Skeleton·ID taleplerinde olduğu gibi,
 `tez/05`, `tez/08`). Yazılı belge olmadan tezin ek bölümüne konulamaz.
 
-## 2. TEZDE ATIF KURALI — araştırmacının koyduğu kural
+## 2. TEZDE ATIF KURALI — TEZ DANIŞMANININ KURALI
+
+**Kaynak:** araştırmacının tez danışmanı hocası (araştırmacı 2026-11-11 11:45 ve
+11:58'de bildirdi).
 
 > *"Tezin hiçbir yerine GitHub repolarını yazmayacaksın, bu en büyük kural."*
+> *"Yazılımın adı ve sürümü de yazılmaz; bu bir yazılım tezi değil."*
 
 **Uygulanacak biçim:**
 
 - Tez metninde **hiçbir GitHub bağlantısı yer almaz.**
-- Yöntemler **yayımlanmış makaleleriyle** anılır:
+- Tez metninde **hiçbir yazılım ürün adı ve sürüm numarası yer almaz.**
+- Yöntemler **yazarıyla ve yayımlanmış makalesiyle** anılır — ürün adıyla değil:
   - NICP → Amberg, Romdhani & Vetter 2007
   - ALPACA / geometrik medyan → SlicerMorph (Rolfe ve ark.) yayını
   - Cinsiyet tayini karşılaştırması → Constantinou ve ark., DOI 10.1002/oa.3109
   - BT tabanlı kraniyal cinsiyet tayini → Toneva ve ark.
   - 3B morfometrik özelliklerden cinsiyet tayini → Bertsatos
   - Dış referans veri → Howells kraniyometrik veri seti
-- Yazılım adı ve sürümü yazılabilir (ör. *"CraniumPy"*), **adres yazılmaz.**
+**Örnek cümle biçimleri (ürün adı geçmeden):**
+
+- *"Porion noktaları, çok ölçekli pekiştirmeli öğrenme tabanlı otomatik
+  landmark tanımlama yöntemiyle (Lucanchling ve ark.) belirlenmiştir."*
+- *"Yüzeyler arası katı olmayan eşleştirme Amberg, Romdhani ve Vetter (2007)
+  formülasyonuyla uygulanmıştır."*
+- *"Çok şablonlu kestirimlerin birleştirilmesinde geometrik medyan (Weiszfeld
+  yinelemesi) kullanılmıştır (Rolfe ve ark.)."*
+- *"Genelleştirilmiş Procrustes analizi ve şekil temel bileşenler analizi
+  (Rolfe ve ark.) uygulanmıştır."*
+
+**Bu biçim kuralı ihlal etmez ve bilimsel gerekliliği de karşılar:** atıf
+yazılımın adına değil **yazarına ve yayınına** yapılır; "GitHub", ürün adı ve
+sürüm numarası hiçbir yerde geçmez.
+
+⚠ **Tek şart — yanlış tanıtma yasağı.** Porion noktalarını dışarıdan
+**önceden eğitilmiş bir model** bulmaktadır. Tez, bu noktaların yazarın kendi
+geometrik kodu tarafından bulunduğu izlenimini vermemelidir. Yukarıdaki
+birinci cümle biçimi bunu karşılar: yöntem ve yazarı anılır, ürün adı anılmaz.
+Bu, `00` §0.1'in (kaynaksız bilgi cümlesi yasağı) gereğidir.
 
 **Bu kural `00` §0.1 ile çelişmez ve onu ihlal etmez:** §0.1 kaynaksız bilgi
 cümlesi yasaklar; burada kaynak **makaleye** verilir, depoya değil. Akademik

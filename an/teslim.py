@@ -1,3 +1,4 @@
+import os
 # -*- coding: utf-8 -*-
 """GENEL 3D Slicer DENETIM PAKETI uretici.
 
@@ -51,7 +52,9 @@ for s, S in (('r', 'sag'), ('l', 'sol')):
 h = {s: M[s].sum() * vox / 1000. for s in M}
 bek = (o['hacim_sag'], o['hacim_sol'])
 dv = (abs(h['r'] - bek[0]), abs(h['l'] - bek[1]))
-assert max(dv) < 0.01, 'maske raporla tutmuyor %s' % (dv,)
+_TOL = float(os.environ.get('TESLIM_TOLERANS', '0.01'))   # varsayilan DEGISMEDI; yalniz arastirmaci onayiyla tek olguda acilir
+assert max(dv) < _TOL, 'maske raporla tutmuyor %s' % (dv,)
+_FARK_UYARI = max(dv) >= 0.01
 print('maske dogrulandi: %.3f/%.3f (rapor %.3f/%.3f) · fark %.0f/%.0f voksel'
       % (h['r'], h['l'], bek[0], bek[1], dv[0] * 1000 / vox, dv[1] * 1000 / vox))
 
@@ -221,6 +224,11 @@ A('')
 A('BU OLCUM TEZ ISTATISTIGINE GIRMEZ (00 §0.6). Satir veri setinde,')
 A('seg_durum = "TAM OTOMATIK - denetimsiz, TEZ DISI". Duzeltip gonderdiginizde')
 A('hasta13/14/15 gibi KARMA satira donusur.')
+if _FARK_UYARI:
+    L.insert(0, '!! UYARI: bu paketteki segmentasyonun hacmi tablodaki degerden sapiyor: '
+             'sag %.4f cm3, sol %.4f cm3 (paket dogrulama siniri 0.01). Paket arastirmacinin '
+             'acik onayiyla uretildi (2026-11-12); TABLODAKI DEGER DEGISMEDI.' % dv)
+    L.insert(1, '')
 open(OUT + '/OKU.txt', 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 print('band: %d/%d icinde, %d disinda%s' % (ic, toplam, len(dis),
       (' -> ' + ', '.join(d[0] for d in dis)) if dis else ''))

@@ -18,7 +18,7 @@ import olcum_zinciri as oz
 import kalinlik_bolgesel as kb
 
 denek, dcm, kl = sys.argv[1:4]
-hacim, bilgi = onisle.dicom_hacim(dcm)
+hacim, bilgi = (onisle.nrrd_hacim(dcm) if dcm.endswith('.nrrd') else onisle.dicom_hacim(dcm))
 ct = np.transpose(hacim, (2, 1, 0))
 org = np.array(bilgi["origin"], float)
 rows = np.diag([bilgi["PixelSpacing"][0], bilgi["PixelSpacing"][1], bilgi["kesit_araligi"]])
@@ -27,6 +27,19 @@ lm, egri = params.load_scene(kl)
 for s in ('r', 'l'):                      # Slicer adi 'apeks-*' -> hat adi 'apex-*'
     if 'apeks-' + s in lm:
         lm['apex-' + s] = lm.pop('apeks-' + s)
+    if 'mfo-' + s in lm and 'fmo-' + s not in lm:   # hasta6 sahnesindeki yazim hatasi
+        lm['fmo-' + s] = lm.pop('mfo-' + s)
+    if 'fso-' + s in lm and 'mso-' + s not in lm:   # hasta8-11: fso = mso (manuel-olcum-yontemi-atlas §3)
+        lm['mso-' + s] = lm.pop('fso-' + s)
+if 'sag' not in egri:                     # 'sağ' / 'sa' (Turkce karakter) adlandirmasi
+    for k in ('sağ', 'sa'):
+        if k in egri:
+            egri['sag'] = egri[k]; break
+for S in ('sag', 'sol'):                  # 'hasta11_rim_sag' gibi adlar
+    if S not in egri:
+        ad = sorted(k for k in egri if k.endswith(S) or ('_%s_' % S) in k)
+        if ad:
+            egri[S] = egri[ad[0]]
 gerek = [b + '-' + s for b in L.ORD for s in 'rl'] + ['apex-r', 'apex-l']
 eksik = [k for k in gerek if k not in lm]
 assert not eksik, 'eksik landmark: %s' % eksik

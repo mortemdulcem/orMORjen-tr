@@ -21,10 +21,15 @@ P = ['OW_sag', 'OW_sol', 'OH_sag', 'OH_sol', 'OI_sag', 'OI_sol', 'APalan_sag', '
      'kal_inf_sol', 'kal_med_sag', 'kal_med_sol', 'kal_lat_sag', 'kal_lat_sol']
 
 
+# AYNI KISI = AYNI KAT (ezber/sizinti olmasin): pilot ile denek ayni taramaysa kat kisiye gore atanir
+AYNI_KISI = {'hasta5': 'denek255', 'hasta7': 'denek245', 'hasta10': 'denek24', 'hasta11': 'denek50'}
+
+
 def kume(ad):
     """0BQ §3 (2026-11-16 09:54 guncel): 5 katli capraz dogrulama. Kat = SHA-256(ad) mod 5.
     Her olgu 4 katta EGITIME, kendi katinda SINAVA girer; ayni anda ikisine asla. Son model butun olgularla egitilir."""
-    return 'kat%d' % (int(hashlib.sha256(ad.encode()).hexdigest(), 16) % 5)
+    kisi = AYNI_KISI.get(ad, ad)
+    return 'kat%d' % (int(hashlib.sha256(kisi.encode()).hexdigest(), 16) % 5)
 
 
 shutil.rmtree(SP, ignore_errors=True); os.makedirs(SP + '/r'); os.makedirs(SP + '/x')

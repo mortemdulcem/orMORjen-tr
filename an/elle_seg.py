@@ -34,7 +34,7 @@ def bul(kl, shape, org, rows):
     """klasordeki ELLE segmentasyon: once Segmentation*.seg.nrrd (OTOMATIK/ISIN adlilar haric)."""
     for f in sorted(glob.glob(kl + '/*.seg.nrrd')):
         b = os.path.basename(f).upper()
-        if 'OTOMATIK' in b or 'ISIN' in b or '_SEGMENTATION' in b and not b.startswith('SEGMENTATION'):
+        if 'OTOMATIK' in b or 'ISIN' in b:     # adi acikca otomatik olanlar haric; paketteki segmentasyon arastirmacinindir (0BQ)
             continue
         h = nrrd.read_header(f)
         if 'Segment0_Name' not in h or int(np.prod(h['sizes'][-3:])) <= 1:

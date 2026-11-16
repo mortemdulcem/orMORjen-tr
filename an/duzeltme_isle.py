@@ -71,7 +71,16 @@ eski = list(csv.DictReader(open(kf, encoding='utf-8'))) if os.path.exists(kf) el
 eski = [x for x in eski if x['denek'] != denek] + [satir]
 with open(kf, 'w', encoding='utf-8', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(satir.keys())); w.writeheader(); w.writerows(eski)
-shutil.rmtree(SP, ignore_errors=True)
+# capraz denetim: arastirmacinin Slicer Segment Statistics tablosu (Table.tsv, LM hacim) ile bizim okudugumuz hacim
+tab = {}
+for f in glob.glob(kl + '/Table*.tsv'):
+    if f.endswith('schema.tsv'):
+        continue
+    for row in csv.DictReader(open(f, encoding='utf-8'), delimiter='\t'):
+        if 'Volume cm3 (LM)' in row and row.get('Segment', '').lower()[:2] in ('sa', 'so'):
+            tab['sag' if row['Segment'].lower().startswith('sa') else 'sol'] = float(row['Volume cm3 (LM)'])
+tablo_fark = {S: round(e.get('hacim_' + S, float('nan')) - v, 3) for S, v in tab.items()}
 red = [u['kapi'] for u in d['denetim']['uyari'] if u['sonuc'] == 'RED']
-print('TAMAM', denek, d['kume'], d.get('maske_kaynak', '')[:30], 'RED', red,
+print('TAMAM', denek, 'Table.tsv farki', tablo_fark, d['kume'], d.get('maske_kaynak', '')[:30], 'RED', red,
       ' '.join('%s=%s' % (p, satir['fark_' + p]) for p in ('OW_sag', 'OW_sol', 'OH_sag', 'hacim_sag', 'hacim_sol', 'IOD_d')))
+shutil.rmtree(SP, ignore_errors=True)

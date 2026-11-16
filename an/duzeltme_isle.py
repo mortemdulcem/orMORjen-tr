@@ -22,8 +22,9 @@ P = ['OW_sag', 'OW_sol', 'OH_sag', 'OH_sol', 'OI_sag', 'OI_sol', 'APalan_sag', '
 
 
 def kume(ad):
-    """0BQ §3 — sonuc gorulmeden sabit: SHA-256(ad) mod 5 == 0 -> sinav (%20), digerleri iyilestirme."""
-    return 'sinav' if int(hashlib.sha256(ad.encode()).hexdigest(), 16) % 5 == 0 else 'iyilestirme'
+    """0BQ §3 (2026-11-16 09:54 guncel): 5 katli capraz dogrulama. Kat = SHA-256(ad) mod 5.
+    Her olgu 4 katta EGITIME, kendi katinda SINAVA girer; ayni anda ikisine asla. Son model butun olgularla egitilir."""
+    return 'kat%d' % (int(hashlib.sha256(ad.encode()).hexdigest(), 16) % 5)
 
 
 shutil.rmtree(SP, ignore_errors=True); os.makedirs(SP + '/r'); os.makedirs(SP + '/x')

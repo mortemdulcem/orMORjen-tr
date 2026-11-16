@@ -51,6 +51,15 @@ assert os.path.exists(J), 'elle olcum uretilemedi'
 d = json.load(open(J)); d.pop('slicer_klasoru', None)
 b = d['bt']; d['bt'] = {k: b.get(k) for k in ('kesit', 'voksel_mm', 'kesit_kalinligi', 'cekirdek', 'spacing')}
 d['kume'] = kume(denek)
+import SimpleITK as _s, numpy as _np
+_a = _s.GetArrayFromImage(_s.ReadImage(ct))
+d['bt']['voksel_sha'] = hashlib.sha256(_np.ascontiguousarray(_a).tobytes()).hexdigest()[:24]
+_ayni = []
+for _f in glob.glob(REPO + '/elle_duzeltme/*_ELLE_OLCUM.json'):
+    _o = json.load(open(_f))
+    if _o.get('bt', {}).get('voksel_sha') == d['bt']['voksel_sha'] and _o.get('kimlik') != denek:
+        _ayni.append(_o.get('kimlik'))
+d['mukerrer_tarama'] = _ayni      # bos degilse AYNI KISI: kat ve analiz icin AYNI_KISI'ya eklenmeli
 os.makedirs(REPO + '/elle_duzeltme', exist_ok=True)
 json.dump(d, open(REPO + '/elle_duzeltme/%s_ELLE_OLCUM.json' % denek, 'w'), ensure_ascii=False, indent=1)
 # egitim verisi (hasta verisi: yerel)
@@ -87,6 +96,6 @@ for f in glob.glob(kl + '/Table*.tsv'):
             tab['sag' if row['Segment'].lower().startswith('sa') else 'sol'] = float(row['Volume cm3 (LM)'])
 tablo_fark = {S: round(e.get('hacim_' + S, float('nan')) - v, 3) for S, v in tab.items()}
 red = [u['kapi'] for u in d['denetim']['uyari'] if u['sonuc'] == 'RED']
-print('TAMAM', denek, 'Table.tsv farki', tablo_fark, d['kume'], d.get('maske_kaynak', '')[:30], 'RED', red,
+print('MUKERRER' if d['mukerrer_tarama'] else 'TAMAM', denek, d['mukerrer_tarama'], 'Table.tsv farki', tablo_fark, d['kume'], d.get('maske_kaynak', '')[:30], 'RED', red,
       ' '.join('%s=%s' % (p, satir['fark_' + p]) for p in ('OW_sag', 'OW_sol', 'OH_sag', 'hacim_sag', 'hacim_sol', 'IOD_d')))
 shutil.rmtree(SP, ignore_errors=True)

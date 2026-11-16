@@ -45,12 +45,18 @@ eksik = [k for k in gerek if k not in lm]
 assert not eksik, 'eksik landmark: %s' % eksik
 E = {'sag': np.asarray(egri['sag'], float), 'sol': np.asarray(egri['sol'], float)}
 
+import elle_seg
+ES, ES_dosya = elle_seg.bul(kl, ct.shape, org, rows)
 M = {}
 for s, S in (('r', 'sag'), ('l', 'sol')):
-    M[s] = rayseg.kohort_maskesi(ct, rows, org, lm, s, rim_curve=E[S])['maske']
+    if ES is not None:      # ARASTIRMACININ SEGMENTASYONU ESASTIR (0BO §0)
+        M[s] = ES[S]
+    else:
+        M[s] = rayseg.kohort_maskesi(ct, rows, org, lm, s, rim_curve=E[S])['maske']
+MASKE_KAYNAK = ('arastirmaci segmentasyonu: ' + os.path.basename(ES_dosya)) if ES is not None else 'rayseg.kohort_maskesi (arastirmaci landmark+egri)'
 
 R = oz.olc(ct, rows, org, lm, M['r'], M['l'], rim_r=E['sag'], rim_l=E['sol'],
-           kaynak='ARASTIRMACI LANDMARK + EGRI (Slicer) · maske rayseg.kohort_maskesi',
+           kaynak='ARASTIRMACI LANDMARK + EGRI (Slicer) · maske: ' + MASKE_KAYNAK,
            kimlik=denek + '_ELLE', on_sinir_duzlemde=True, apeks_atlastan=False)
 for s, S in (('r', 'sag'), ('l', 'sol')):
     eks = np.asarray(lm['apex-' + s], float) - np.mean([lm[b + '-' + s] for b in L.ORD], axis=0)
@@ -69,7 +75,7 @@ for S in ('sag', 'sol'):
     h = R.get('hacimK_' + S)
     ek['hacim_bandi_' + S] = bool(h is not None and 19.9 <= h <= 33.4)
     ek['OI_100_' + S] = bool(R.get('OI_' + S, 0) < 100)
-rap = {'kimlik': denek, 'yontem': 'elle_olc.py (hat 6-8. adim, arastirmaci landmarklari)',
+rap = {'maske_kaynak': MASKE_KAYNAK, 'kimlik': denek, 'yontem': 'elle_olc.py (hat 6-8. adim, arastirmaci landmarklari)',
        'slicer_klasoru': kl, 'bt': bilgi, 'olcum': R, 'denetim': den, 'ek_kapilar': ek}
 os.makedirs('/home/claude/an/out/elle', exist_ok=True)
 json.dump(rap, open('/home/claude/an/out/elle/%s_ELLE_OLCUM.json' % denek, 'w'),

@@ -1,0 +1,7 @@
+
+2026-11-17 YENIDEN OLCUM (arastirmaci talimati "denek58 tekrar olc", ayni BT yeniden yuklendi; 171 kesit, voksel 0,488x0,488x1,25):
+  Hat (A, donmus) 5. adimda yine DURDU: rim egrisi uretilemedi. Sag rim isin basarisi %44,4 (once %47,2), sol %100.
+  Tani (gorsel, aksiyel/sagital): SAG landmarklar orbitanin onune/yanina, yumusak dokuya ve havaya dusmus
+  (ek-r ve mso-r kemigin disinda); sol noktalar kemik uzerinde. MSP kapisi (1,17 mm) bunu yakalamadi.
+  BONE_HU 150/120 ve medial koruma kapali denemeleri de %44-46 — sorun esik degil, nokta yerlesimi.
+  Esik oynatilmadi (B3). Yol: arastirmaci landmark isaretler -> elle_olc ile olcum (denek49/55 emsali).

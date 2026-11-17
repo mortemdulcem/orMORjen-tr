@@ -14,7 +14,7 @@ RAP = json.load(open('/home/claude/an/out/elle/%s_ELLE_OLCUM.json' % denek, enco
 o = RAP['olcum']
 shutil.rmtree(OUT, ignore_errors=True); shutil.copytree(kl, OUT)
 
-hacim, bilgi = onisle.dicom_hacim(dcm)
+hacim, bilgi = (onisle.nrrd_hacim(dcm) if dcm.endswith('.nrrd') else onisle.dicom_hacim(dcm))
 ct = np.transpose(hacim, (2, 1, 0))
 org = np.array(bilgi['origin'], float)
 rows = np.diag([bilgi['PixelSpacing'][0], bilgi['PixelSpacing'][1], bilgi['kesit_araligi']])

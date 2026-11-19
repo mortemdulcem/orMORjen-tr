@@ -1,0 +1,7 @@
+2026-11-19 YENIDEN OLCUM (arastirmaci talimati "denek88 tekrar olc"; 179 kesit, voksel 0,596x0,596x1,25, seri 1.25MM BONE, aksiyel):
+  Hat (A) 5. adimda DURDU: rim egrisi uretilemedi. Sag rim isin basarisi %79-100, SOL %41,7 / %48,6 (gereken %50).
+  Orbita bulma DOGRU: merkezler RAS x=3,0 / -60,2, kafa orta hatti -27,4 (kafa FOV'da ~27 mm kaymis), ayriklik 63 mm.
+  Tani (aksiyel, LPS cevrimi dogru yapilarak): SAG noktalar kemik uzerinde; SOL ek-l, fmo-l, mso-l havada (HU ~ -950..-1000),
+  lateral/onde. denek58 ile ayni sinif: tek tarafta nokta yerlesimi orbitanin disina dusuyor; MSP kapisi (0,34 mm) yakalamadi.
+  Esik degistirilmedi. Yol: arastirmaci isaretleme paketi (teslim/tam/denek88_isaretleme.zip) -> elle_olc.
+  Not: ilk tanida koordinatlar RAS iken LPS sanilip yanlis HU okundu; duzeltildi. Kural: lm sozlugu RAS'tir, ijk icin x,y isaret cevrilir.

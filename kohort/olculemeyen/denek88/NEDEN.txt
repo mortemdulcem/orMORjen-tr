@@ -5,3 +5,4 @@
   lateral/onde. denek58 ile ayni sinif: tek tarafta nokta yerlesimi orbitanin disina dusuyor; MSP kapisi (0,34 mm) yakalamadi.
   Esik degistirilmedi. Yol: arastirmaci isaretleme paketi (teslim/tam/denek88_isaretleme.zip) -> elle_olc.
   Not: ilk tanida koordinatlar RAS iken LPS sanilip yanlis HU okundu; duzeltildi. Kural: lm sozlugu RAS'tir, ijk icin x,y isaret cevrilir.
+2026-11-19 16:53 arastirmaci landmark+egri koydu (denek88_olcum1); elle_olc ile olculdu, kapilar gecti (hacim 33,40/33,29 cm3). Paket teslim/tam/denek88_elle_slicer.zip.

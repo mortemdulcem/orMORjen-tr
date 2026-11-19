@@ -20,9 +20,22 @@ org = np.array(bilgi['origin'], float)
 rows = np.diag([bilgi['PixelSpacing'][0], bilgi['PixelSpacing'][1], bilgi['kesit_araligi']])
 vox = abs(float(np.linalg.det(rows)))
 lm, egri = params.load_scene(kl)
-for s in ('r', 'l'):
+for s in ('r', 'l'):                      # ad uyarlamasi elle_olc.py ile AYNI olmali (ayni olcum)
     if 'apeks-' + s in lm:
         lm['apex-' + s] = lm.pop('apeks-' + s)
+    if 'mfo-' + s in lm and 'fmo-' + s not in lm:
+        lm['fmo-' + s] = lm.pop('mfo-' + s)
+    if 'fso-' + s in lm and 'mso-' + s not in lm:
+        lm['mso-' + s] = lm.pop('fso-' + s)
+if 'sag' not in egri:
+    for k in ('sağ', 'sa'):
+        if k in egri:
+            egri['sag'] = egri[k]; break
+for S in ('sag', 'sol'):                  # 'rim_sag', 'sol' gibi adlar
+    if S not in egri:
+        ad = sorted(k for k in egri if k.endswith(S) or ('_%s_' % S) in k)
+        if ad:
+            egri[S] = egri[ad[0]]
 M = {s: rayseg.kohort_maskesi(ct, rows, org, lm, s, rim_curve=np.asarray(egri[S], float))['maske']
      for s, S in (('r', 'sag'), ('l', 'sol'))}
 h = {s: M[s].sum() * vox / 1000. for s in M}

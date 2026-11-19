@@ -42,8 +42,11 @@ mrml = glob.glob(SP + '/x/**/*.mrml', recursive=True)
 assert mrml, 'sahne (.mrml) yok'
 kl = os.path.dirname(mrml[0])
 ctler = [f for f in glob.glob(kl + '/*.nrrd') if not f.endswith('.seg.nrrd')]
-assert ctler, 'BT (.nrrd) yok'
-ct = max(ctler, key=os.path.getsize)
+if ctler:
+    ct = max(ctler, key=os.path.getsize)
+else:   # paket BT tasimiyorsa (yalniz landmark+seg): ayni olgunun ham DICOM dizini DCM_DIZIN ile verilir
+    ct = os.environ.get('DCM_DIZIN')
+    assert ct and os.path.isdir(ct), 'BT (.nrrd) yok; DCM_DIZIN ile DICOM dizini verilmeli'
 r = subprocess.run(['python3', '/home/claude/an/elle_olc.py', denek, ct, kl], capture_output=True, text=True)
 print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr.strip().splitlines()[-1])
 J = '/home/claude/an/out/elle/%s_ELLE_OLCUM.json' % denek

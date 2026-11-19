@@ -5,7 +5,7 @@ A=/mnt/user-data/attachments/9f46a888-8a38-562b-887d-ad413187b1aa; U=/mnt/user-d
 S=/tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/yeni
 cd /home/claude/an
 for n in "$@"; do
-  f=$(ls $U/denek${n}dıcom.rar $A/*-denek${n}d_com.rar 2>/dev/null | head -1)
+  f=$(ls $U/denek${n}dıcom.rar $A/*-denek${n}d_com.rar /home/claude/gelen3/denek${n}d_com.part1.rar 2>/dev/null | head -1)
   [ -n "$f" ] || { echo "denek$n KAYNAK YOK"; continue; }
   rm -rf $S; mkdir -p $S; unrar x -idq "$f" $S/ || { echo "denek$n ACILAMADI"; continue; }
   ns=$(find $S -type d -name 'se0*' | wc -l); se=$(find $S -type d -name 'se0*' | head -1)

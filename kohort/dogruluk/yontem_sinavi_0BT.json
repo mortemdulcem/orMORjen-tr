@@ -1,0 +1,329 @@
+{
+ "n_olgu": 25,
+ "felaket": [
+  "denek9",
+  "denek15"
+ ],
+ "nokta_A": {
+  "d-r": {
+   "n": 25,
+   "ort": 4.816,
+   "mae": 4.816,
+   "medyan_mutlak": 2.404,
+   "maks": 58.029
+  },
+  "d-l": {
+   "n": 25,
+   "ort": 4.471,
+   "mae": 4.471,
+   "medyan_mutlak": 2.039,
+   "maks": 60.876
+  },
+  "mf-r": {
+   "n": 25,
+   "ort": 4.951,
+   "mae": 4.951,
+   "medyan_mutlak": 2.572,
+   "maks": 61.571
+  },
+  "mf-l": {
+   "n": 25,
+   "ort": 4.604,
+   "mae": 4.604,
+   "medyan_mutlak": 1.97,
+   "maks": 62.619
+  },
+  "mso-r": {
+   "n": 25,
+   "ort": 3.03,
+   "mae": 3.03,
+   "medyan_mutlak": 0.498,
+   "maks": 61.917
+  },
+  "mso-l": {
+   "n": 25,
+   "ort": 3.151,
+   "mae": 3.151,
+   "medyan_mutlak": 0.506,
+   "maks": 66.319
+  },
+  "fmo-r": {
+   "n": 25,
+   "ort": 3.642,
+   "mae": 3.642,
+   "medyan_mutlak": 0.814,
+   "maks": 51.811
+  },
+  "fmo-l": {
+   "n": 25,
+   "ort": 3.402,
+   "mae": 3.402,
+   "medyan_mutlak": 0.597,
+   "maks": 60.584
+  },
+  "ek-r": {
+   "n": 25,
+   "ort": 2.895,
+   "mae": 2.895,
+   "medyan_mutlak": 0.774,
+   "maks": 46.744
+  },
+  "ek-l": {
+   "n": 25,
+   "ort": 2.859,
+   "mae": 2.859,
+   "medyan_mutlak": 0.615,
+   "maks": 50.524
+  },
+  "o-r": {
+   "n": 25,
+   "ort": 2.255,
+   "mae": 2.255,
+   "medyan_mutlak": 0.386,
+   "maks": 45.78
+  },
+  "o-l": {
+   "n": 25,
+   "ort": 2.535,
+   "mae": 2.535,
+   "medyan_mutlak": 0.355,
+   "maks": 53.562
+  },
+  "apex-r": {
+   "n": 25,
+   "ort": 4.871,
+   "mae": 4.871,
+   "medyan_mutlak": 4.817,
+   "maks": 13.556
+  },
+  "apex-l": {
+   "n": 25,
+   "ort": 6.238,
+   "mae": 6.238,
+   "medyan_mutlak": 5.068,
+   "maks": 39.431
+  }
+ },
+ "nokta_C": {
+  "ek-r": {
+   "n": 25,
+   "ort": 3.045,
+   "mae": 3.045,
+   "medyan_mutlak": 0.963,
+   "maks": 46.547
+  },
+  "ek-l": {
+   "n": 25,
+   "ort": 3.122,
+   "mae": 3.122,
+   "medyan_mutlak": 0.783,
+   "maks": 53.043
+  },
+  "fmo-r": {
+   "n": 25,
+   "ort": 3.894,
+   "mae": 3.894,
+   "medyan_mutlak": 1.927,
+   "maks": 52.807
+  },
+  "fmo-l": {
+   "n": 25,
+   "ort": 3.767,
+   "mae": 3.767,
+   "medyan_mutlak": 1.141,
+   "maks": 60.872
+  }
+ },
+ "egri_A": {
+  "egri_ort_sag": {
+   "n": 25,
+   "ort": 2.044,
+   "mae": 2.044,
+   "medyan_mutlak": 0.595,
+   "maks": 35.203
+  },
+  "egri_ort_sol": {
+   "n": 25,
+   "ort": 2.299,
+   "mae": 2.299,
+   "medyan_mutlak": 0.545,
+   "maks": 42.755
+  },
+  "egri_maks_sag": {
+   "n": 25,
+   "ort": 4.39,
+   "mae": 4.39,
+   "medyan_mutlak": 1.96,
+   "maks": 48.953
+  },
+  "egri_maks_sol": {
+   "n": 25,
+   "ort": 4.883,
+   "mae": 4.883,
+   "medyan_mutlak": 2.34,
+   "maks": 59.886
+  }
+ },
+ "param_A": {
+  "OW_sag": {
+   "n": 25,
+   "ort": 0.499,
+   "mae": 1.415,
+   "medyan_mutlak": 1.35,
+   "maks": 3.5
+  },
+  "OW_sol": {
+   "n": 25,
+   "ort": -0.607,
+   "mae": 1.336,
+   "medyan_mutlak": 1.13,
+   "maks": 4.78
+  },
+  "OH_sag": {
+   "n": 25,
+   "ort": -0.692,
+   "mae": 0.776,
+   "medyan_mutlak": 0.24,
+   "maks": 13.67
+  },
+  "OH_sol": {
+   "n": 25,
+   "ort": -0.538,
+   "mae": 0.728,
+   "medyan_mutlak": 0.19,
+   "maks": 12.04
+  },
+  "OI_sag": {
+   "n": 25,
+   "ort": -2.676,
+   "mae": 3.924,
+   "medyan_mutlak": 2.5,
+   "maks": 27.5
+  },
+  "OI_sol": {
+   "n": 25,
+   "ort": -0.092,
+   "mae": 3.18,
+   "medyan_mutlak": 2.2,
+   "maks": 18.6
+  },
+  "APalan_sag": {
+   "n": 25,
+   "ort": -23.332,
+   "mae": 44.852,
+   "medyan_mutlak": 15.8,
+   "maks": 670.3
+  },
+  "APalan_sol": {
+   "n": 25,
+   "ort": -36.868,
+   "mae": 51.5,
+   "medyan_mutlak": 16.1,
+   "maks": 806.4
+  },
+  "APcevre_sag": {
+   "n": 25,
+   "ort": -0.468,
+   "mae": 2.082,
+   "medyan_mutlak": 0.74,
+   "maks": 26.58
+  },
+  "APcevre_sol": {
+   "n": 25,
+   "ort": -0.489,
+   "mae": 1.663,
+   "medyan_mutlak": 0.63,
+   "maks": 23.89
+  },
+  "hacim_sag": {
+   "n": 25,
+   "ort": -0.408,
+   "mae": 0.747,
+   "medyan_mutlak": 0.349,
+   "maks": 6.368
+  },
+  "hacim_sol": {
+   "n": 25,
+   "ort": -0.918,
+   "mae": 1.141,
+   "medyan_mutlak": 0.5,
+   "maks": 16.06
+  },
+  "IOD_d": {
+   "n": 25,
+   "ort": 0.452,
+   "mae": 1.069,
+   "medyan_mutlak": 0.84,
+   "maks": 3.75
+  },
+  "IOD_mf": {
+   "n": 25,
+   "ort": 0.103,
+   "mae": 1.319,
+   "medyan_mutlak": 1.15,
+   "maks": 4.48
+  },
+  "BOW_ek": {
+   "n": 25,
+   "ort": 0.601,
+   "mae": 0.762,
+   "medyan_mutlak": 0.53,
+   "maks": 2.3
+  },
+  "BOW_fmo": {
+   "n": 25,
+   "ort": -0.278,
+   "mae": 1.1,
+   "medyan_mutlak": 0.76,
+   "maks": 5.64
+  },
+  "derinlik_sag": null,
+  "derinlik_sol": null
+ },
+ "param_C": {
+  "OW_sag": {
+   "n": 25,
+   "ort": 0.444,
+   "mae": 1.357,
+   "medyan_mutlak": 1.245,
+   "maks": 3.272
+  },
+  "OW_sol": {
+   "n": 25,
+   "ort": -0.645,
+   "mae": 1.358,
+   "medyan_mutlak": 1.017,
+   "maks": 4.72
+  },
+  "BOW_ek": {
+   "n": 25,
+   "ort": 0.166,
+   "mae": 0.65,
+   "medyan_mutlak": 0.547,
+   "maks": 1.791
+  },
+  "BOW_fmo": {
+   "n": 25,
+   "ort": 0.376,
+   "mae": 1.033,
+   "medyan_mutlak": 0.699,
+   "maks": 5.043
+  }
+ },
+ "olcut_0BT": {
+  "1_OW_mae": false,
+  "2_BOWek_mae": true,
+  "3_nokta": false,
+  "4_maks": false,
+  "5_felaket": true
+ },
+ "C_kabul": false,
+ "ek_nokta_ort": {
+  "A": 2.877,
+  "C": 3.083
+ },
+ "fmo_nokta_ort": {
+  "A": 3.522,
+  "C": 3.83
+ }
+}

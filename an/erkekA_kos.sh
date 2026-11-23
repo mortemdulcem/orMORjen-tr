@@ -13,7 +13,7 @@ for n in "$@"; do
   if [ -n "$p1" ]; then cp "$p1" $S/r/a.part1.rar; [ -n "$p2" ] && cp "$p2" $S/r/a.part2.rar; ilk=$S/r/a.part1.rar
   elif [ -n "$tek" ]; then cp "$tek" $S/r/a.rar; ilk=$S/r/a.rar
   else echo "denek$n KAYNAK YOK"; continue; fi
-  unrar x -idq $ilk $S/x/ || { echo "denek$n ACILAMADI"; continue; }
+  unrar x -o+ -idq $ilk $S/x/ || { echo "denek$n ACILAMADI"; continue; }
   rm -rf $S/r
   se=$(find $S/x -type d -name 'se0*' -exec sh -c 'echo $(ls "$1" | wc -l) "$1"' _ {} \; | sort -n | tail -1 | cut -d' ' -f2-)
   mkdir -p /home/claude/gelen3/d$n; rm -rf /home/claude/gelen3/d$n/se; mv "$se" /home/claude/gelen3/d$n/se; rm -rf $S
@@ -29,6 +29,6 @@ except SystemExit as e: print(ad,'DURDU',e)
 except Exception: print(ad,'HATA'); traceback.print_exc()
 P
   echo "$(tail -1 out/erkekA/kos_$n.log)  $(grep -o 'AYNI TARAMA[^(]*' out/erkekA/kos_$n.log | head -1)"
-  rm -rf /home/claude/gelen3/d$n
+  rm -rf /home/claude/gelen3/d$n; echo "$(date "+%F %T") denek$n gecici acilmis DICOM (gelen3/d$n) silindi; ozgun: yukleme RARlari. Onay: \"devam et tamamla\" 2026-11-23 22:28" >> /home/claude/ormorjen-tr/kohort/silme_kaydi/erkekA_gecici_silme.log
 done
 echo PARTI_BITTI

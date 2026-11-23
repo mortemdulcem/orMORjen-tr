@@ -1,0 +1,15 @@
+2026-11-23 22:22 (TRT) ONAYLI SILME. Arastirmaci: "gecici acilmis kopyalari sil".
+Silinen: duzeltme RAR'larinin scratchpad'e acilmis gecici kopyalari. Ozgun RAR'lar /mnt/user-data/uploads altinda; ELLE olcumleri kohort/elle_duzeltme, egitim verisi /home/claude/egitim.
+klasor  boyut  ozgun_rar_sha256
+duz_denek100  80M  55fc87be587159a35480d85c5e20f6680d05ca141c77092b1a649d38fa2a6e2c
+duz_denek87  73M  c9a7785c98f01f5598b7ee0cfbb873d2eda07959bc77a8f0e8042a84cd49d609
+duz_denek87_onceki_20261123181228  76M  c9a7785c98f01f5598b7ee0cfbb873d2eda07959bc77a8f0e8042a84cd49d609
+duz_denek91  79M  b6620563556836b14e629baf8b55b44d91076f60059cfa4c724abedbc3deab2b
+duz_denek92  63M  d4c9b0c89d12de29496aae238ffb3fa2437d3c521c86c592ede11e524f75b3f5
+duz_denek93  80M  0d45d46249a9674a1b54324b3441c44bc213560f02771b3660b3903028f9a256
+duz_denek94  75M  09a2c51edc3e9ce3d48337d932b3f3aa15026a0784ea49bf9ebff52d90f1441c
+duz_denek95  83M  59836cfc22298488349eb900d30533b9f3de7261328cf352a5a857fd397e67ba
+duz_denek96  84M  defc699c644f4c6ffd71523a8d94ef15365b463f3ee5d1c214ae343e4f0128d8
+duz_denek97  75M  5648eb4a7654f208b393d8d0ed98c11a7c20277806450a456fb6781dc6e076f3
+duz_denek98  63M  e4384ab6e377c552de3bf7c4284b328bf67dd1ac3ca58aa619efc2ee3674d09b
+duz_denek99  85M  d62334336c032d8468ff8dcb33ee6c9611d187b14d7cdf7afdcb31398d849b7b

@@ -1,0 +1,16 @@
+2026-11-23 21:00 (TRT) ONAYLI SILME. Arastirmaci: "Ham dicomlarin hepsini silebilrisin eskide kalan" + "Tamam bunu. Disindaki ham dicomlari sil" (istisna: denek55 ve korunan ham DICOM'lu olgular).
+KORUNDU: gelen3/d55 (denek55), kohort/ham, kohort/olculen, kohort/olculemeyen, atlas_bt (atlas kaynagi), gelen/bt_h5..h11 ve gelen/bone119 (pilot/atlas; bone119 bt_h8 ile birebir degil).
+
+SILINEN  boyut  ozgun(salt-okunur)  ozgun_sha256
+gelen/denek97  79M
+    ozgun 826fe59e-denek97d_com.part1.rar  4ee74d430c068b750dd15b5c4482059958712b3050ff91d390f51ea1ffc557fd
+    ozgun ccb50810-denek97d_com.part2.rar  7d17726ec5bc72c0aada1adfdcff44a8e020c0bf7a927ec5839cb4fdd84a8395
+gelen/d5  79M
+    ozgun 043acfa4-denek5d_com.part1.rar  dd9446f5924924ca54e9c53a4f540169c1d5bbcb9dafd03755c9ef0266737dfa
+    ozgun b69efdc2-denek5d_com.part2.rar  646da5c2809711dffab09955982b530357f460762a2a45e988d8e344b9b23a4a
+gelen/denek102  70M
+    ozgun c217abaf-denek102d_com.part2.rar  be2d00e36da2ce19338913d38df1f2b4c8f7c08024ff066f96b2f9aa0c419d5a
+    ozgun d2143583-denek102d_com.part1.rar  60ecf7d384338ce3f3844a9b4078349c6ccec0747fbab3ec8a33c47672822ed6
+kurtarma/test1  234M
+    ozgun 3960bea2-denek1d_com.part1.rar  dfa4468db5efc088e4c95e6a98a2faeeeff96ea383ef115a816dfc56a6c665e5
+    ozgun b6737240-denek1d_com.part2.rar  7ceac4f8d85dfb2bcfa49da0f828416a3be05b060238b29ea6f63e2e8a1a4761

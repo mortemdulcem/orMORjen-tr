@@ -37,7 +37,10 @@ env = dict(os.environ, LANG='C.UTF-8', LC_ALL='C.UTF-8')
 for i, p in enumerate(parcalar, 1):
     shutil.copy(p, SP + '/r/p.part%d.rar' % i if len(parcalar) > 1 else SP + '/r/p.rar')
 ilk = SP + ('/r/p.part1.rar' if len(parcalar) > 1 else '/r/p.rar')
-subprocess.run(['unrar', 'x', '-idq', ilk, SP + '/x/'], env=env, check=True)
+if len(parcalar) == 1 and parcalar[0].lower().endswith('.zip'):   # zip paket (denek87)
+    subprocess.run(['unzip', '-q', parcalar[0], '-d', SP + '/x/'], env=env, check=True)
+else:
+    subprocess.run(['unrar', 'x', '-idq', ilk, SP + '/x/'], env=env, check=True)
 mrml = glob.glob(SP + '/x/**/*.mrml', recursive=True)
 assert mrml, 'sahne (.mrml) yok'
 kl = os.path.dirname(mrml[0])

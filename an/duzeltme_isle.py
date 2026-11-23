@@ -10,7 +10,7 @@
   5. KUME: on kayitli kural (0BQ §3) -> iyilestirme / sinav
 Kullanim: python3 duzeltme_isle.py <denek> <rar_parca1> [parca2 ...]
 """
-import sys, os, json, csv, glob, shutil, subprocess, hashlib
+import sys, time, os, json, csv, glob, shutil, subprocess, hashlib
 denek, parcalar = sys.argv[1], sys.argv[2:]
 SP = '/tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_' + denek
 REPO = '/home/claude/ormorjen-tr/kohort'
@@ -32,7 +32,13 @@ def kume(ad):
     return 'kat%d' % (int(hashlib.sha256(kisi.encode()).hexdigest(), 16) % 5)
 
 
-shutil.rmtree(SP, ignore_errors=True); os.makedirs(SP + '/r'); os.makedirs(SP + '/x')
+# 0BU: arastirmaci onayi olmadan hicbir sey silinmez. Gecici klasor yalniz GECICI_SIL=1 ile silinir.
+if os.path.exists(SP):
+    if os.environ.get('GECICI_SIL') == '1':
+        shutil.rmtree(SP)
+    else:
+        os.rename(SP, SP + '_onceki_' + time.strftime('%Y%m%d%H%M%S'))
+os.makedirs(SP + '/r'); os.makedirs(SP + '/x')
 env = dict(os.environ, LANG='C.UTF-8', LC_ALL='C.UTF-8')
 for i, p in enumerate(parcalar, 1):
     shutil.copy(p, SP + '/r/p.part%d.rar' % i if len(parcalar) > 1 else SP + '/r/p.rar')
@@ -69,7 +75,10 @@ d['mukerrer_tarama'] = _ayni      # bos degilse AYNI KISI: kat ve analiz icin AY
 os.makedirs(REPO + '/elle_duzeltme', exist_ok=True)
 json.dump(d, open(REPO + '/elle_duzeltme/%s_ELLE_OLCUM.json' % denek, 'w'), ensure_ascii=False, indent=1)
 # egitim verisi (hasta verisi: yerel)
-shutil.rmtree(EG, ignore_errors=True); os.makedirs(EG)
+if os.path.exists(EG):   # 0BU: onceki egitim verisi SILINMEZ, arsive tasinir
+    os.makedirs(os.path.dirname(EG) + '/_eski', exist_ok=True)
+    os.rename(EG, os.path.dirname(EG) + '/_eski/%s_%s' % (denek, time.strftime('%Y%m%d%H%M%S')))
+os.makedirs(EG)
 for f in glob.glob(kl + '/*.mrk.json') + glob.glob(kl + '/*.seg.nrrd') + glob.glob(kl + '/*.mrml'):
     shutil.copy(f, EG)
 # karsilastirma
@@ -104,4 +113,7 @@ tablo_fark = {S: round(e.get('hacim_' + S, float('nan')) - v, 3) for S, v in tab
 red = [u['kapi'] for u in d['denetim']['uyari'] if u['sonuc'] == 'RED']
 print('MUKERRER' if d['mukerrer_tarama'] else 'TAMAM', denek, d['mukerrer_tarama'], 'Table.tsv farki', tablo_fark, d['kume'], d.get('maske_kaynak', '')[:30], 'RED', red,
       ' '.join('%s=%s' % (p, satir['fark_' + p]) for p in ('OW_sag', 'OW_sol', 'OH_sag', 'hacim_sag', 'hacim_sol', 'IOD_d')))
-shutil.rmtree(SP, ignore_errors=True)
+if os.environ.get('GECICI_SIL') == '1':   # 0BU
+    shutil.rmtree(SP, ignore_errors=True)
+else:
+    print('GECICI KLASOR DURUYOR (onay bekliyor):', SP)

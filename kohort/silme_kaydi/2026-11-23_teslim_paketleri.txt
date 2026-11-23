@@ -1,0 +1,9 @@
+2026-11-23 21:05 (TRT) ONAYLI SILME. Arastirmaci: "Tamam silebilrisin" (teslim paketleri). Yalniz duzeltmesi gelmis olgularin paketleri silindi; digerleri soruldu.
+dosya  boyut_bayt  sha256
+denek49_elle_slicer.zip  55725684  f44ab995211131197b8774faf759b490770ae1e37428215ea5ffa4ed65b7d6b9
+denek49_slicer.zip  42775401  8376452dc8406d1b5f2fb0c7421030e4551ba49948435443be4f651f73bdca79
+denek55_elle_slicer.zip  52364804  748733fe446ea8044ffab1fdc85f5850ea7bc45d0f2b443c1466d17386338b36
+denek55_isaretleme.zip  39240887  f7bfa2417c914172781dc544e98d8612d5cfd526c8fb23a1b4ec1de1d1f9138d
+denek58_elle_slicer.zip  58958690  9b01fb427ae2a357609908f2ef382e0591d2eaddf8715715099fc2436b0080f7
+denek88_elle_slicer.zip  38555149  eed55006fe211bbaaa4163a15cabdb6c3b88ce0f6674362577eb15c8489d4e00
+denek88_isaretleme.zip  35080040  67fa0669243283abef7a6d969418cfc33ef2493c91483ff90f39358a9cd3e3ed

@@ -8,3 +8,7 @@ denek204 — otomatik hat (A) olcemedi
 Sonuc 0BG ile ayni. Esik tek olgu icin degistirilmez (0BG, 0K §0.12). Olgu disLANMAZ.
 Yol: arastirmaci Slicer'da landmark + rim egrilerini koyar -> elle_olc.py ile segmentasyon ve hacim
 (denek88'de izlenen yol). Gecici acilmis DICOM gelen3/hazir204 bu is icin tutuluyor (onaysiz silinmez).
+
+2026-11-25 15:06: arastirmaci Slicer'da 14 landmark + iki rim egrisi koydu (denek204_olcum_1.rar).
+duzeltme_isle.py -> elle_olc.py ile maske (rayseg.kohort_maskesi) ve olcum: hacim sag 27.57 / sol 26.77 cm3, RED yok.
+Olgunun olcumu ARASTIRMACI olcumudur (kohort/elle_duzeltme/denek204_ELLE_OLCUM.json). Otomatik hat icin "olcemedi" kaydi gecerli.

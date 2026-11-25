@@ -1,0 +1,3 @@
+# 2026-11-26 denek204 Slicer teslim paketi silindi. Onay (arastirmaci, 2026-11-26 00:08): "slicer paketlerinide sil ben indirdim zaten". denek204 olcumu kohort/elle_duzeltme ve egitim/denek204'te duruyor.
+2026-11-25 21:08:44 /home/claude/denek204_elle_teslim boyut=56701469B sha256(ilk16)=450c6a19fe690cd7
+2026-11-25 21:08:44 /home/claude/denek204_slicer.zip boyut=1265069B sha256(ilk16)=9e32aea4343f0b1b

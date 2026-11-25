@@ -1,0 +1,13 @@
+# 2026-11-25 gecici acilmis kopyalar silindi. Onay (arastirmaci, 2026-11-25 23:55): "geçici kopyaları sil". Ozgun RAR yuklemeleri yerinde; olcum/egitim/elle_duzeltme dosyalarina DOKUNULMADI.
+2026-11-25 20:56:13 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek201 boyut=76259802B icerik_sha256(ilk16)=d5b3034f864f8d03
+2026-11-25 20:56:15 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek202 boyut=76285942B icerik_sha256(ilk16)=79931c8c55e35ecc
+2026-11-25 20:56:18 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek203 boyut=85897724B icerik_sha256(ilk16)=0a59e73b2ee27491
+2026-11-25 20:56:21 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek204 boyut=107357714B icerik_sha256(ilk16)=d2211cabbd35097a
+2026-11-25 20:56:25 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek204_onceki_20261125201502 boyut=110267687B icerik_sha256(ilk16)=9c750a8e14b66683
+2026-11-25 20:56:29 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek205 boyut=85341492B icerik_sha256(ilk16)=5fbe9ca509728632
+2026-11-25 20:56:30 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek206 boyut=75736543B icerik_sha256(ilk16)=46748758b0d6c06d
+2026-11-25 20:56:33 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek207 boyut=74765832B icerik_sha256(ilk16)=708556acbf40e0be
+2026-11-25 20:56:34 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek208 boyut=61959711B icerik_sha256(ilk16)=de468c6deafb1a49
+2026-11-25 20:56:37 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek209 boyut=76528784B icerik_sha256(ilk16)=c9dbec82ac20b7a1
+2026-11-25 20:56:38 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek210 boyut=78246795B icerik_sha256(ilk16)=cc17b8b4862a093d
+2026-11-25 20:56:44 /home/claude/gelen3/hazir204 boyut=86070074B icerik_sha256(ilk16)=20f13a24f9fe846e

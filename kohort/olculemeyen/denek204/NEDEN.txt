@@ -1,0 +1,10 @@
+denek204 — otomatik hat (A) olcemedi
+2026-11-25: arastirmaci yeniden yukledi ("denek204 tekrar olc"). Yukleme 2026-11-11 yuklemesiyle birebir ayni
+(md5 part1 1ab93fc4..., part2 88a5fae5...). Bugunku donmus hatla yeniden kosuldu:
+  [1 ALIM] 163 kesit (512,512,163) GECERLI
+  [4 LANDMARK] 14 nokta, MSP ort 0.27 maks 0.81 mm
+  [4b MEDIAL] TAMAM
+  [5 RIM] DURDU: rim egrisi uretilemedi  (sag isin basarisi 0.472 < 0.5; bkz. proje 0BG)
+Sonuc 0BG ile ayni. Esik tek olgu icin degistirilmez (0BG, 0K §0.12). Olgu disLANMAZ.
+Yol: arastirmaci Slicer'da landmark + rim egrilerini koyar -> elle_olc.py ile segmentasyon ve hacim
+(denek88'de izlenen yol). Gecici acilmis DICOM gelen3/hazir204 bu is icin tutuluyor (onaysiz silinmez).

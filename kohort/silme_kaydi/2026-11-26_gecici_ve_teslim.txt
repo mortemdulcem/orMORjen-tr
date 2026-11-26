@@ -1,0 +1,24 @@
+# 2026-11-26 gecici acilmis kopyalar + gonderilmis Slicer teslim paketleri silindi. Onay (arastirmaci, 2026-11-26 11:56): "sil" (soru: denek211-220 acilmis kopyalari, denek211/214/216/217 BT'leri ve Slicer paketleri). Olcum/egitim/elle_duzeltme ve ozgun RARlar yerinde.
+2026-11-26 08:56:56 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek211 boyut=97235975B sha256(ilk16)=5dee64072fc3b03f
+2026-11-26 08:57:01 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek211_onceki_20261126085320 boyut=101453897B sha256(ilk16)=151d51792db23b94
+2026-11-26 08:57:01 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek212 boyut=80645992B sha256(ilk16)=8b7a9f5255c0886b
+2026-11-26 08:57:01 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek213 boyut=85548623B sha256(ilk16)=8e364291ae0db92c
+2026-11-26 08:57:01 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek214 boyut=75956520B sha256(ilk16)=7e3629b44f79cdff
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek215 boyut=67418613B sha256(ilk16)=7533de410267de19
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek216 boyut=76177460B sha256(ilk16)=608c5f246f8c582a
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek217 boyut=80852298B sha256(ilk16)=ddca7734f3ae05bd
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek218 boyut=78949711B sha256(ilk16)=bdfb9a8be338b167
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek219 boyut=82089133B sha256(ilk16)=48d3388aa22ad0eb
+2026-11-26 08:57:02 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek220 boyut=71723533B sha256(ilk16)=05e29d3da94fd74b
+2026-11-26 08:57:07 /home/claude/gelen3/hazir211 boyut=74455502B sha256(ilk16)=c2f7794aa9704b32
+2026-11-26 08:57:10 /home/claude/gelen3/hazir214 boyut=77624316B sha256(ilk16)=2eeeee38bfe70f60
+2026-11-26 08:57:12 /home/claude/gelen3/hazir216 boyut=75510084B sha256(ilk16)=d708b589f8339ef6
+2026-11-26 08:57:16 /home/claude/gelen3/hazir217 boyut=81846940B sha256(ilk16)=296d601287943986
+2026-11-26 08:57:17 /home/claude/denek211_elle_teslim boyut=52332971B sha256(ilk16)=1485de11b01bded3
+2026-11-26 08:57:19 /home/claude/denek214_teslim boyut=38264503B sha256(ilk16)=ed0d60778b0045b4
+2026-11-26 08:57:20 /home/claude/denek216_teslim boyut=38505748B sha256(ilk16)=321e3d413ccd906f
+2026-11-26 08:57:22 /home/claude/denek217_teslim boyut=40883946B sha256(ilk16)=f7d6b76c4d4ebb9b
+2026-11-26 08:57:22 /home/claude/denek211_slicer.zip boyut=1336788B sha256(ilk16)=8603e4d9080b3e21
+2026-11-26 08:57:22 /home/claude/denek214_slicer.zip boyut=38176084B sha256(ilk16)=baebe08285637b59
+2026-11-26 08:57:23 /home/claude/denek216_slicer.zip boyut=38415570B sha256(ilk16)=523eb5240eac29bc
+2026-11-26 08:57:24 /home/claude/denek217_slicer.zip boyut=40794229B sha256(ilk16)=a0cae6220a2478c1

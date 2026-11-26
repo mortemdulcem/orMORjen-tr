@@ -7,3 +7,5 @@ denek211 — otomatik hat (A) olcumu RED (havuza girmez)
   [8 DENETIM] RED hacim_bandi sag/sol, RED orbital_indeks sol 150.3
 Neden: yatik bas; nokta yerlestirme cercevesi tarayici eksenlerinde (0BE §4-5). Anatomik MSP cercevesi 0BH'de yanlislandi.
 Olgu dislanmaz. Yol: arastirmaci landmark + rim egrileri koyar -> elle_olc.py (denek88/denek204 yolu).
+
+2026-11-26 08:50: arastirmaci 14 landmark + iki rim egrisi koydu (denek211_olcum_1.rar). elle_olc ile maske: hacim sag 21.68 / sol 22.07 cm3, RED yok, uc duzlemde tek bilesen, kemik ici. Olcum ARASTIRMACI olcumudur.

@@ -1,5 +1,5 @@
 {
- "maske_kaynak": "rayseg.kohort_maskesi (arastirmaci landmark+egri)",
+ "maske_kaynak": "arastirmaci segmentasyonu: denek211_Segmentation.seg.nrrd",
  "kimlik": "denek211",
  "yontem": "elle_olc.py (hat 6-8. adim, arastirmaci landmarklari)",
  "bt": {
@@ -16,7 +16,7 @@
  },
  "olcum": {
   "kimlik": "denek211_ELLE",
-  "maske_kaynagi": "ARASTIRMACI LANDMARK + EGRI (Slicer) · maske: rayseg.kohort_maskesi (arastirmaci landmark+egri)",
+  "maske_kaynagi": "ARASTIRMACI LANDMARK + EGRI (Slicer) · maske: arastirmaci segmentasyonu: denek211_Segmentation.seg.nrrd",
   "voksel_mm3": 0.29802,
   "OW_sag": 43.7,
   "OH_sag": 36.26,

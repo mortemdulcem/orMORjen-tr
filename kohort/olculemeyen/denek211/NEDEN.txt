@@ -1,0 +1,9 @@
+denek211 — otomatik hat (A) olcumu RED (havuza girmez)
+2026-11-26: arastirmaci yeniden yukledi ("denek211 tekrar olc"). Yukleme 2026-11-11 yuklemesiyle birebir ayni
+(md5 part1 c1e775c3f95d, part2 ebca6d1d1036). Bugunku donmus hatla yeniden kosuldu; sonuc 0BE §4 ile AYNI:
+  [4 LANDMARK] MSP ort 3.12 maks 9.36 mm (normal ~0.3); mso-o 22.07 / 34.45 mm
+  [4b MEDIAL] oynama d/mf 29.6-36.6 mm (normal 1-8)
+  [6 MASKE] 35.897 / 42.794 cm3
+  [8 DENETIM] RED hacim_bandi sag/sol, RED orbital_indeks sol 150.3
+Neden: yatik bas; nokta yerlestirme cercevesi tarayici eksenlerinde (0BE §4-5). Anatomik MSP cercevesi 0BH'de yanlislandi.
+Olgu dislanmaz. Yol: arastirmaci landmark + rim egrileri koyar -> elle_olc.py (denek88/denek204 yolu).

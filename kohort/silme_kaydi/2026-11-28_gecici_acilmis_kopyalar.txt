@@ -1,0 +1,11 @@
+# 2026-11-28 denek231-240 duzeltme paketlerinin gecici acilmis kopyalari silindi. Onay (arastirmaci, 2026-11-28 14:29): "kopyaları sil". Olcum/egitim/elle_duzeltme ve ozgun RARlar yerinde.
+2026-11-28 11:29:18 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek231 boyut=79534454B sha256(ilk16)=7901c97393235cf4
+2026-11-28 11:29:20 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek232 boyut=80202881B sha256(ilk16)=4f0f0429e7d2bbe0
+2026-11-28 11:29:22 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek233 boyut=71770958B sha256(ilk16)=1b8eae06c48d862f
+2026-11-28 11:29:24 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek234 boyut=74692970B sha256(ilk16)=0773bf1a2ad7339d
+2026-11-28 11:29:26 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek235 boyut=81610931B sha256(ilk16)=28d75903e665f631
+2026-11-28 11:29:28 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek236 boyut=79138999B sha256(ilk16)=7bb690db4606d242
+2026-11-28 11:29:29 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek237 boyut=73987031B sha256(ilk16)=b91c14dfe5459d75
+2026-11-28 11:29:31 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek238 boyut=67314535B sha256(ilk16)=ecc36f441df9af1a
+2026-11-28 11:29:33 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek239 boyut=77649667B sha256(ilk16)=9803098081ac8540
+2026-11-28 11:29:35 /tmp/claude-0/-home-claude/9f46a888-8a38-562b-887d-ad413187b1aa/scratchpad/duz_denek240 boyut=84190287B sha256(ilk16)=fc9e164e5e022cb7

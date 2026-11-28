@@ -7,3 +7,5 @@ denek241 — otomatik hat (A) olcumu RED (havuza girmez)
   [8 DENETIM] RED hacim_bandi sag/sol, RED orbital_indeks sag 109.8
 Ayni sinif: denek211 (yatik bas / yerlestirme cercevesi, 0BE §4-5). Olgu dislanmaz.
 Yol: arastirmaci landmark + rim egrileri koyar -> elle_olc.py (denek88/204/211 yolu).
+
+2026-11-28 15:25: arastirmaci 14 landmark + iki rim egrisi koydu (denek241_olcum_1.rar). elle_olc ile maske: hacim sag 29.80 / sol 29.18 cm3, RED yok (UYARI iod_bandi 26.74), uc duzlemde tek bilesen, kemik ici. Olcum ARASTIRMACI olcumudur.

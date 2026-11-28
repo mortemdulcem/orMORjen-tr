@@ -1,0 +1,9 @@
+denek241 — otomatik hat (A) olcumu RED (havuza girmez)
+2026-11-28: arastirmaci yeniden yukledi ("denek241 tekrar olc"). Yukleme 2026-11-11 yuklemesiyle birebir ayni
+(md5 part1 6db479bd42a7, part2 f93c8ee8d76d). Bugunku donmus hatla yeniden kosuldu; sonuc 2026-11-11 ile ayni (RED):
+  [4 LANDMARK] MSP ort 8.12 maks 14.95 mm (normal ~0.3); mso-o 13.15 / 28.39 mm
+  [4b MEDIAL] oynama d/mf 13-38 mm (normal 1-8)
+  [6 MASKE] 43.556 / 45.372 cm3
+  [8 DENETIM] RED hacim_bandi sag/sol, RED orbital_indeks sag 109.8
+Ayni sinif: denek211 (yatik bas / yerlestirme cercevesi, 0BE §4-5). Olgu dislanmaz.
+Yol: arastirmaci landmark + rim egrileri koyar -> elle_olc.py (denek88/204/211 yolu).
